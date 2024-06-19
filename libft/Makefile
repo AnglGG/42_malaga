@@ -27,10 +27,15 @@ RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(INCLUDE) $(BONUS_OBJS)
+$(NAME): $(OBJ)
 	@echo "$(GREEN)Creating library...$(RESET)"
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "$(GREEN)Library created: $(NAME)$(RESET)"
+
+bonus: $(OBJ) $(BONUS_OBJS)
+	@echo "$(GREEN)Creating bonus...$(RESET)"
+	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS)
+	@echo "$(GREEN)Bonus created!$(RESET)"
 
 %.o: %.c
 	@echo "$(GREEN)Compiling $<...$(RESET)"
@@ -46,11 +51,6 @@ fclean: clean
 	@echo "$(GREEN)Deleting $(NAME)...$(RESET)"
 	@$(RM) $(NAME)
 	@echo "$(GREEN)Deleted $(NAME)$(RESET)"
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	@echo "$(GREEN)Creating bonus...$(RESET)"
-	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS)
-	@echo "$(GREEN)Bonus created!$(RESET)"
 
 re: fclean all bonus
 
