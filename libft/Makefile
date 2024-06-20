@@ -37,7 +37,7 @@ bonus: $(OBJ) $(BONUS_OBJS)
 	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS)
 	@echo "$(GREEN)Bonus created!$(RESET)"
 
-%.o: %.c
+%.o: %.c $(INCLUDE)
 	@echo "$(GREEN)Compiling $<...$(RESET)"
 	@$(CC) $(CCFLAGS) -c -o $@ $<
 	@echo "$(GREEN)$< compiled!$(RESET)"
