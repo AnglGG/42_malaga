@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:55:46 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/16 17:28:47 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:55:49 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,14 @@ char	*ft_itoa(int n)
 	result[len] = '\0';
 	return (result);
 }
+
+/*
+#include <stdio.h>
+
+int main() {
+	int nbr = -2147483648;
+
+	char *numero_ft = ft_itoa(nbr);
+	printf("El número con ft_itoa es: %s\n", numero_ft);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:38:14 by anggalle          #+#    #+#             */
-/*   Updated: 2024/03/07 00:38:37 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:40:46 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_isalpha(int c)
 
 	alpha = 0;
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-	{
 		alpha = 1;
-	}
 	return (alpha);
 }

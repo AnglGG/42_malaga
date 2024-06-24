@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:37:59 by anggalle          #+#    #+#             */
-/*   Updated: 2024/03/07 19:24:56 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:41:55 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_isdigit(int c)
 
 	isdigit = 0;
 	if ((c >= '0' && c <= '9'))
-	{
 		isdigit = 1;
-	}
 	return (isdigit);
 }

@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:46:18 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/16 16:50:37 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:19:27 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,20 @@ char	**ft_split(char const *s, char c)
 		}
 		i ++;
 	}
+	res[j] = NULL;
 	return (res);
 }
+
+/*
+#include <stdio.h>
+int main()
+{
+	char *phrase = "Hola mundo el split está hecho";
+	char c = 32;
+	char **result;
+
+	result = ft_split(phrase, c);
+	for (int i; result[i]; i++)
+		printf("%s\n", result[i]);
+}
+*/

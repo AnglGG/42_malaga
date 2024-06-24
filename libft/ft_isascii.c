@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 19:27:01 by anggalle          #+#    #+#             */
-/*   Updated: 2024/03/07 19:33:51 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:40:39 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_isascii(int c)
 
 	ascii = 0;
 	if (c >= 0 && c <= 127)
-	{
 		ascii = 1;
-	}
 	return (ascii);
 }

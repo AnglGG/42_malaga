@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:15:33 by anggalle          #+#    #+#             */
-/*   Updated: 2024/03/09 00:39:26 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:56:57 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
 /*
+#include <stdio.h>
 int		main()
 {
-    char src[] = "HOLAAA";
+    const char src[] = "Hi";
 	char dst[] = "holaaaa";
-	size_t len = 7;
-	write(1, ft_memmove(dst, src, len), 8);
-	write(1, "\n", 1);
-	write(1, memmove(dst, src, len), 8);
-	write(1, "\n", 1);
+	size_t len = 3;
+	char *result;
+
+	result = ft_memmove(dst, src, len);
+	printf("%s\n", result);
+	result = memmove(dst, src, len);
+	printf("%s\n", result);
     return 0;
 }
 */
