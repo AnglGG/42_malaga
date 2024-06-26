@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:55:23 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/19 19:21:54 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:47:58 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		{
 			del(new_content);
 			ft_lstclear(&new_lst, del);
-			return (NULL);
 		}
 		ft_lstadd_back(&new_lst, new_object);
 		lst = lst->next;
