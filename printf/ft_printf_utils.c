@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:12:05 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/25 20:05:09 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/26 02:16:56 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,31 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_putchr(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
+}
+
+int	ft_putnbr(long num)
+{
+	int	i;
+
+	i = 0;
+	if (num < 0)
+	{
+		i += ft_putchar('-');
+		i += ft_putnbr(-num);
+	}
+	else
+	{
+		if (num > 9)
+		{
+			i += ft_putnbr(num / 10);
+			i += ft_putnbr(num % 10);
+		}
+		else
+			i += ft_putchar(num + '0');
+	}
+	return (i);
 }

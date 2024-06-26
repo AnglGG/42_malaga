@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:56:15 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/25 20:06:21 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/26 02:11:41 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@ int	check_arg(char type_arg, va_list args)
 	if (type_arg == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (type_arg == 'c')
-		count += ft_putchr(va_arg(args, int));
-	// else if (type_arg == 'p')
+		count += ft_putchar(va_arg(args, int));
+	//else if (type_arg == 'p')
 	// 	print_pointer(args, count);
-	// else if (type_arg == 'd')
-	// 	print_int(args, count);
-	// else if (type_arg == 'i')
-	// 	print_base10(args, count);
-	// else if (type_arg == 'u')
-	// 	print_base10_no_mark(args, count);
+	else if (type_arg == 'd')
+	 	count += ft_putnbr(va_arg(args, int));
+	else if (type_arg == 'i')
+		count += ft_putnbr(va_arg(args, int));
+	else if (type_arg == 'u')
+		count += ft_putnbr((unsigned int)va_arg(args, unsigned int));
 	// else if (type_arg == 'x')
 	// 	print_base16_min(args, count);
 	// else if (type_arg == 'X')
 	// 	print_base16_max(args, count);
-	// else if (type_arg == '%')
-	// 	print_porc(args, count);
+	else if (type_arg == '%')
+	 	count += ft_putchar('%');
 	return (count);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(char const *format, ...)
 {
 	int		i;
 	int		count;
@@ -63,12 +63,11 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-// #include <stdio.h>
-// int main()
-// {
-// 	int contador = ft_printf("Hola me llamo: %s", "Angel");
-// 	printf("\n%d\n", contador);
-// 	contador = printf("Hola me llamo: %s", "Angel");
-// 	printf("\n%d\n", contador);
-	
-// }
+ #include <stdio.h>
+ int main()
+ {
+ 	int contador = ft_printf("Hola me llamo: %u", -42);
+ 	printf("\n%d\n", contador);
+ 	contador = printf("Hola me llamo: %u", -42);
+ 	printf("\n%d\n", contador);
+ }
