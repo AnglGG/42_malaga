@@ -6,56 +6,46 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:12:05 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/03 09:54:00 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:37:43 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_putstr(char *str, t_flags flags)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		if (flags.precision >= 6 || flags.precision == -1)
+		{
+			if (flags.print)
+				write(1, "(null)", 6);
+			return (6);
+		}
+		return (0);
 	}
-	while (str[i])
+	while (str[i] && (flags.precision > i || flags.precision == -1))
 	{
-		write(1, &str[i], 1);
+		if (flags.print)
+		{
+			if (flags.precision == -1)
+				write(1, &str[i], 1);
+			else if (flags.precision > i)
+				write(1, &str[i], 1);
+		}
 		i ++;
 	}
 	return (i);
 }
 
-int	ft_putchar(char c)
+int	ft_putchar(char c, t_flags flags)
 {
-	write(1, &c, 1);
+	if (flags.print == 1)
+	{
+		write(1, &c, 1);
+	}
 	return (1);
 }
-
-int	ft_putnbr(long num)
-{
-	int	i;
-
-	i = 0;
-	if (num < 0)
-	{
-		i += ft_putchar('-');
-		i += ft_putnbr(-num);
-	}
-	else
-	{
-		if (num > 9)
-		{
-			i += ft_putnbr(num / 10);
-			i += ft_putnbr(num % 10);
-		}
-		else
-			i += ft_putchar(num + '0');
-	}
-	return (i);
-}
-
