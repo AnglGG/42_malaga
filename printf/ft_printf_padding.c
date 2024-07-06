@@ -6,37 +6,12 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:32:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/05 13:10:48 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:01:03 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-int	ft_atoi(const char *str)
-{
-	int		negative;
-	long	number;
-
-	number = 0;
-	negative = 1;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str ++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			negative = -1;
-		str ++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		if (number != 0)
-			number *= 10;
-		number += (*str - '0') * negative;
-		str ++;
-	}
-	return ((int)number);
-}
 
 int	is_zero(const char *str)
 {
@@ -78,7 +53,7 @@ int	ft_left_justification(const char **format, va_list args)
 
 	(*format)++;
 	while (**format == '-')
-		(*format) ++;
+		(*format)++;
 	flags.zero = is_zero(*format);
 	flags.print = 1;
 	flags.precision = calc_precision(*format);
@@ -96,26 +71,36 @@ int	ft_left_justification(const char **format, va_list args)
 	return (arg_tam);
 }
 
-int	ft_right_justification(const char **format, va_list args)
+void	configure_flags(t_flags *flags, const char *format)
+{
+	flags->zero = is_zero(format);
+	flags->print = 0;
+	flags->precision = calc_precision(format);
+	if (flags->zero > 0)
+		flags->neg = 0;
+	if (flags->precision > -1 && flags->zero)
+		flags->neg = 1;
+}
+
+int	ft_right_justification(const char **format, va_list args, t_flags flags)
 {
 	int		total_tam;
 	int		arg_tam;
 	va_list	args_copy;
-	t_flags	flags;
 
 	va_copy(args_copy, args);
-	flags.zero = is_zero(*format);
-	flags.print = 0;
-	flags.precision = calc_precision(*format);
+	configure_flags(&flags, *format);
 	total_tam = ft_atoi(*format);
-	while (isdigit(**format) || **format == '.')
+	while (isdigit(**format) || **format == '.' || **format == ' ')
 		(*format)++;
 	arg_tam = check_arg(**format, args_copy, flags);
+	if (flags.zero > 0)
+		flags.neg = 1;
 	va_end(args_copy);
 	flags.print = 1;
 	while (arg_tam < total_tam)
 	{
-		if (flags.zero && flags.precision != 0)
+		if (flags.zero && flags.precision == -1)
 			arg_tam += ft_putchar('0', flags);
 		else
 			arg_tam += ft_putchar(' ', flags);

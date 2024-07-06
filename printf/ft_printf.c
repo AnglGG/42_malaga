@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:56:15 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/05 13:15:54 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:20:00 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	check_arg(char type_arg, va_list args, t_flags flags)
 	else if (type_arg == 'c')
 		count += ft_putchar(va_arg(args, int), flags);
 	else if (type_arg == 'p')
-		count += ft_puthex((uintptr_t)va_arg(args, void *), 0, 1, flags);
+	{
+		flags.prefix = 1;
+		count += ft_puthex((uintptr_t)va_arg(args, void *), 0, flags);
+	}
 	else if (type_arg == 'd')
 		count += ft_putnbr(va_arg(args, int), flags);
 	else if (type_arg == 'i')
@@ -30,9 +33,9 @@ int	check_arg(char type_arg, va_list args, t_flags flags)
 	else if (type_arg == 'u')
 		count += ft_putnbr((unsigned int)va_arg(args, unsigned int), flags);
 	else if (type_arg == 'x')
-		count += ft_puthex(va_arg(args, uintptr_t), 0, 0, flags);
+		count += ft_puthex(va_arg(args, uintptr_t), 0, flags);
 	else if (type_arg == 'X')
-		count += ft_puthex(va_arg(args, uintptr_t), 1, 0, flags);
+		count += ft_puthex(va_arg(args, uintptr_t), 1, flags);
 	else if (type_arg == '%')
 		count += ft_putchar('%', flags);
 	return (count);
@@ -47,14 +50,29 @@ int	is_bonus(char type_bonus)
 	return (0);
 }
 
-int	check_bonus(const char **format, va_list args)
+int	check_bonus(const char **format, va_list args, t_flags flags)
 {
 	if (**format == '-')
 		return (ft_left_justification(format, args));
 	else if (isdigit(**format))
-		return (ft_right_justification(format, args));
+		return (ft_right_justification(format, args, flags));
 	else if (**format == '.')
-		return (ft_right_justification(format, args));
+		return (ft_right_justification(format, args, flags));
+	else if (**format == '#')
+		return (ft_hastack (format, args, flags));
+	else if (**format == ' ')
+	{
+		flags.space = 1;
+		return (ft_right_justification(format, args, flags));
+	}
+	else if (**format == '+')
+	{
+		flags.mas = 1;
+		flags.space = 2;
+		while (**format == '+')
+			(*format)++;
+		return (check_arg(**format, args, flags));
+	}
 	return (0);
 }
 
@@ -64,7 +82,7 @@ int	process_format(const char **format, va_list args, t_flags flags)
 
 	count = 0;
 	if (is_bonus(**format))
-		count += check_bonus(format, args);
+		count += check_bonus(format, args, flags);
 	else
 		count += check_arg(**format, args, flags);
 	(*format)++;
@@ -84,6 +102,7 @@ int	ft_printf(char const *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
+		flags.neg = 0;
 		if (*format != '%')
 		{
 			write(1, format++, 1);

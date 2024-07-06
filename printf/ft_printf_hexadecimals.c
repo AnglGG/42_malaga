@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:57:41 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/05 12:56:14 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/06 17:54:47 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ char	get_hex_digit(uintptr_t digit, int is_uppercase)
 		return (hex_min[digit]);
 }
 
-int	add_prefix(int include_prefix, t_flags flags)
+int	add_prefix(t_flags flags)
 {
-	if (include_prefix)
+	if (flags.prefix == 1)
 		return (ft_putstr("0x", flags));
+	else if (flags.prefix == 2)
+		return (ft_putstr("0X", flags));
 	return (0);
 }
 
-int	handle_zero_case(int include_prefix, t_flags flags)
+int	handle_zero_case(t_flags flags)
 {
 	int	count;
 	int	num_zeros;
@@ -41,7 +43,7 @@ int	handle_zero_case(int include_prefix, t_flags flags)
 	count = 0;
 	if (flags.precision == 0)
 		return (0);
-	if (include_prefix)
+	if (flags.prefix == 1 && flags.zero != 2)
 	{
 		if (flags.print)
 			write(1, "(nil)", 5);
@@ -52,7 +54,7 @@ int	handle_zero_case(int include_prefix, t_flags flags)
 	return (count + ft_putchar('0', flags));
 }
 
-int	ft_puthex(uintptr_t n, int is_uppercase, int include_prefix, t_flags flags)
+int	ft_puthex(uintptr_t n, int is_uppercase, t_flags flags)
 {
 	char	buffer[16];
 	int		count;
@@ -62,8 +64,8 @@ int	ft_puthex(uintptr_t n, int is_uppercase, int include_prefix, t_flags flags)
 	count = 0;
 	i = 0;
 	if (n == 0)
-		return (handle_zero_case(include_prefix, flags));
-	count += add_prefix(include_prefix, flags);
+		return (handle_zero_case(flags));
+	count += add_prefix(flags);
 	while (n > 0)
 	{
 		buffer[i++] = get_hex_digit(n % 16, is_uppercase);
