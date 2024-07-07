@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_padding.c                                :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:32:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/06 18:01:03 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:35:28 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	is_zero(const char *str)
 {
 	const char	*tmp;
 
 	tmp = str;
-	while (!isdigit(*tmp))
+	while (!ft_isdigit(*tmp))
 		tmp++;
 	if (*tmp == '0')
 		return (1);
@@ -32,12 +31,12 @@ int	calc_precision(const char *str)
 
 	tmp = str;
 	nbr = -1;
-	while (isdigit(*tmp))
+	while (ft_isdigit(*tmp))
 		tmp++;
 	if (*tmp == '.')
 	{
 		tmp++;
-		if (isdigit(*tmp))
+		if (ft_isdigit(*tmp))
 			nbr = ft_atoi(tmp);
 		else
 			nbr = 0;
@@ -58,7 +57,7 @@ int	ft_left_justification(const char **format, va_list args)
 	flags.print = 1;
 	flags.precision = calc_precision(*format);
 	total_tam = ft_atoi(*format);
-	while (isdigit(**format) || **format == '.')
+	while (ft_isdigit(**format) || **format == '.')
 		(*format)++;
 	arg_tam = check_arg(**format, args, flags);
 	while (arg_tam < total_tam)
@@ -91,7 +90,7 @@ int	ft_right_justification(const char **format, va_list args, t_flags flags)
 	va_copy(args_copy, args);
 	configure_flags(&flags, *format);
 	total_tam = ft_atoi(*format);
-	while (isdigit(**format) || **format == '.' || **format == ' ')
+	while (ft_isdigit(**format) || **format == '.' || **format == ' ')
 		(*format)++;
 	arg_tam = check_arg(**format, args_copy, flags);
 	if (flags.zero > 0)

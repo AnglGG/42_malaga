@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:56:15 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/06 18:20:00 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:40:21 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_arg(char type_arg, va_list args, t_flags flags)
 int	is_bonus(char type_bonus)
 {
 	if (type_bonus == ' ' || type_bonus == '#' || type_bonus == '+'
-		|| type_bonus == '0' || type_bonus == '-' || isdigit(type_bonus)
+		|| type_bonus == '0' || type_bonus == '-' || ft_isdigit(type_bonus)
 		|| type_bonus == '.')
 		return (1);
 	return (0);
@@ -54,7 +54,7 @@ int	check_bonus(const char **format, va_list args, t_flags flags)
 {
 	if (**format == '-')
 		return (ft_left_justification(format, args));
-	else if (isdigit(**format))
+	else if (ft_isdigit(**format))
 		return (ft_right_justification(format, args, flags));
 	else if (**format == '.')
 		return (ft_right_justification(format, args, flags));

@@ -5,10 +5,14 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
-SRC =	ft_printf.c	ft_printf_utils.c ft_printf_hexadecimals.c ft_printf_padding.c ft_putnbr.c ft_atoi.c ft_printf_bonus_2.c ft_numlen.c
+SRC =	ft_printf.c	ft_printf_utils.c ft_printf_hexadecimals.c ft_putnbr.c ft_atoi.c ft_numlen.c ft_isdigit.c
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = ft_printf.h
+
+BONUS			=	ft_printf_bonus.c ft_printf_bonus_2.c
+
+BONUS_OBJS		= $(BONUS:.c=.o)
 
 # Colores
 GREEN = \033[1;32m
@@ -20,6 +24,11 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)Creating library...$(RESET)"
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "$(GREEN)Library created: $(NAME)$(RESET)"
+
+bonus: $(OBJ) $(BONUS_OBJS)
+	@echo "$(GREEN)Creating bonus...$(RESET)"
+	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS)
+	@echo "$(GREEN)Bonus created!$(RESET)"
 
 %.o: %.c $(INCLUDE)
 	@echo "$(GREEN)Compiling $<...$(RESET)"
