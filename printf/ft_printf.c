@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:56:15 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/07 15:40:21 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:08:35 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,18 @@ int	check_arg(char type_arg, va_list args, t_flags flags)
 	else if (type_arg == 'u')
 		count += ft_putnbr((unsigned int)va_arg(args, unsigned int), flags);
 	else if (type_arg == 'x')
-		count += ft_puthex(va_arg(args, uintptr_t), 0, flags);
+		count += ft_puthex((unsigned int)va_arg(args, uintptr_t), 0, flags);
 	else if (type_arg == 'X')
-		count += ft_puthex(va_arg(args, uintptr_t), 1, flags);
+		count += ft_puthex((unsigned int)va_arg(args, uintptr_t), 1, flags);
 	else if (type_arg == '%')
 		count += ft_putchar('%', flags);
 	return (count);
 }
 
-int	is_bonus(char type_bonus)
-{
-	if (type_bonus == ' ' || type_bonus == '#' || type_bonus == '+'
-		|| type_bonus == '0' || type_bonus == '-' || ft_isdigit(type_bonus)
-		|| type_bonus == '.')
-		return (1);
-	return (0);
-}
-
 int	check_bonus(const char **format, va_list args, t_flags flags)
 {
 	if (**format == '-')
-		return (ft_left_justification(format, args));
+		return (ft_left_justification(format, args, flags));
 	else if (ft_isdigit(**format))
 		return (ft_right_justification(format, args, flags));
 	else if (**format == '.')
@@ -81,12 +72,25 @@ int	process_format(const char **format, va_list args, t_flags flags)
 	int	count;
 
 	count = 0;
-	if (is_bonus(**format))
+	if (**format == ' ' || **format == '#' || **format == '+'
+		|| **format == '0' || **format == '-' || ft_isdigit(**format)
+		|| **format == '.')
 		count += check_bonus(format, args, flags);
 	else
 		count += check_arg(**format, args, flags);
 	(*format)++;
 	return (count);
+}
+
+void	initialize_flags(t_flags *flags)
+{
+	flags->print = 1;
+	flags->zero = 0;
+	flags->precision = -1;
+	flags->neg = 0;
+	flags->prefix = 0;
+	flags->space = 0;
+	flags->mas = 0;
 }
 
 int	ft_printf(char const *format, ...)
@@ -95,9 +99,7 @@ int	ft_printf(char const *format, ...)
 	va_list	args;
 	t_flags	flags;
 
-	flags.print = 1;
-	flags.zero = 0;
-	flags.precision = -1;
+	initialize_flags(&flags);
 	count = 0;
 	va_start(args, format);
 	while (*format)

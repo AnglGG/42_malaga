@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:32:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/07 15:35:28 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:09:38 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ int	calc_precision(const char *str)
 	return (nbr);
 }
 
-int	ft_left_justification(const char **format, va_list args)
+int	ft_left_justification(const char **format, va_list args, t_flags flags)
 {
 	int		total_tam;
 	int		arg_tam;
-	t_flags	flags;
 
 	(*format)++;
 	while (**format == '-')
