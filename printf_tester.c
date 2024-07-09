@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 void test_pointer(void)
 {
@@ -117,12 +118,19 @@ void test_dot_4(void)
 
 void negative_with_zero(void)
 {
-	int contador = printf("EL número es: %012d", (int)-2147483648);;
+	int contador = printf("EL número es: %012d", (int)-2147483648);
 	printf("\nprintf contador: %d\n", contador);
-	contador = ft_printf("El número es: %012d", (int)-2147483648);;
+	contador = ft_printf("El número es: %012d", (int)-2147483648);
 	printf("\nprintf contador: %d\n", contador);
 }
 
+void long_max_x(void)
+{
+	int contador = printf("EL número es: %x", LONG_MAX);
+	printf("\nprintf contador: %d\n", contador);
+	contador = ft_printf("El número es: %x", LONG_MAX);
+	printf("\nprintf contador: %d\n", contador);
+}
 
 int main()
 {
@@ -141,6 +149,7 @@ int main()
 	test_dot_3();
 	test_dot_4();
 	negative_with_zero();
+	long_max_x();
 
 	return 0;
 }
