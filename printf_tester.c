@@ -36,6 +36,14 @@ void test_pointer_null(void)
 	printf("\nprintf contador: %d\n", contador);
 }
 
+void test_pointer_null_2(void)
+{
+	int contador = printf(" %p ", NULL);
+	printf("\nprintf contador: %d\n", contador);
+	contador = ft_printf(" %p ", NULL);
+	printf("\nprintf contador: %d\n", contador);
+}
+
 void test_hex_min_zero(void)
 {
 	int contador = printf("El 0 es igual a %x", 0);
@@ -150,6 +158,7 @@ int main()
 	test_dot_4();
 	negative_with_zero();
 	long_max_x();
+	test_pointer_null_2();
 
 	return 0;
 }
