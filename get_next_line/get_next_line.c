@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:14:38 by anggalle          #+#    #+#             */
-/*   Updated: 2024/08/28 13:17:59 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:43:03 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer)
 	{
 		free(buffer);
-		return (NULL);
-	}
-	if (read(fd, 0, 0) < 0)
-	{
-		free(buffer);
-		free(remaining_content);
-		remaining_content = NULL;
 		return (NULL);
 	}
 	line = read_and_append(fd, remaining_content, buffer);
