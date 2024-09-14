@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_add(t_stack	**list_ref, int new_value, int new_pos)
+void	ft_add(t_stack	**list_ref, int new_value)
 {
 	t_stack	*new_node;
 	t_stack	*last;
@@ -21,7 +21,6 @@ void	ft_add(t_stack	**list_ref, int new_value, int new_pos)
 	new_node = (t_stack *)malloc(sizeof(t_stack));
 	last = *list_ref;
 	new_node->value = new_value;
-	new_node->pos = new_pos;
 	if (*list_ref == NULL)
 	{
 		*list_ref = new_node;
@@ -80,7 +79,7 @@ void	one_arg(char *array, t_stack **list)
 				ft_error();
 			i++;
 		}
-		ft_add(list, ft_atoi(token), j);
+		ft_add(list, ft_atoi(token));
 		j++;
 	}
 	j = 0;
@@ -91,9 +90,7 @@ void	various_args(int ac, char **av, t_stack **list)
 {
 	int	i;
 	int	j;
-	int	pos;
 
-	pos = 1;
 	i = 1;
 	j = 0;
 	while (i < ac)
@@ -107,8 +104,7 @@ void	various_args(int ac, char **av, t_stack **list)
 			j++;
 		}
 		j = 0;
-		ft_add(list, ft_atoi(av[i]), pos);
-		pos++;
+		ft_add(list, ft_atoi(av[i]));
 		i++;
 	}
 }

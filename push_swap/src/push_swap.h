@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:53 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 20:47:54 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/14 22:24:29 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	rrb(t_stack **list);
 void	rrr(t_stack **list1, t_stack **list2);
 void	three_algorithm(t_stack **list);
 void	ft_sorting(t_stack **list1, t_stack **list2);
+void	assign_pos(t_stack *list);
 
 t_stack	*ft_lstlastr(t_stack *lst);
 

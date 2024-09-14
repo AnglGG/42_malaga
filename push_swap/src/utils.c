@@ -61,3 +61,18 @@ int	count_values(t_stack *list)
 	}
 	return (i);
 }
+
+void	assign_pos(t_stack *list)
+{
+	t_stack	*current;
+	int		i;
+
+	i = 0;
+	current = list;
+	while (current != NULL)
+	{
+		current->pos = i;
+		current = current->next;
+		i++;
+	}
+}

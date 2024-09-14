@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:25 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 22:02:03 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/14 22:25:30 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,6 @@ void	ft_sorting(t_stack **list1, t_stack **list2)
 {
 	ft_pass(list1, list2);
 	three_algorithm(list1);
+	assign_pos(*list1);
+	assign_pos(*list2);
 }
