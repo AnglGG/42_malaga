@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:46:18 by anggalle          #+#    #+#             */
-/*   Updated: 2024/06/26 17:38:37 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:50:43 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	word_count(char const *s, char c)
 	return (count);
 }
 
-void	*ft_free(char **strs, int count)
+void	*my_free(char **strs, int count)
 {
 	int	i;
 
@@ -92,7 +92,7 @@ char	**ft_split(char const *s, char c)
 		{
 			res[j] = fill_word(s, s_word, i);
 			if (!(res[j]))
-				return (ft_free(res, j));
+				return (my_free(res, j));
 			s_word = -1;
 			j ++;
 		}

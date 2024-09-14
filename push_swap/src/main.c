@@ -30,13 +30,16 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	check_args(ac, av, &a);
+	ft_printf("A list\n");
+	printlist(a);
+	ft_printf("B list\n");
+	printlist(b);
 	if (count_values(a) == 3)
 		three_algorithm(&a);
 	else
 	{
 		ft_sorting(&a, &b);
 	}
-		//pb(&a, &b);
 	ft_printf("A list\n");
 	printlist(a);
 	ft_printf("B list\n");

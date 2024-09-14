@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:36 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 20:34:37 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/14 21:58:19 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	ft_higher_middle(t_stack **list)
 	node1 = *list;
 	node2 = node1->next;
 	node3 = node2->next;
-	if (node3->index > node2->index)
-		exit(EXIT_SUCCESS);
-	else if (node3->index < node2->index)
+	if (node3->index < node2->index)
 	{
 		if (node1->index < node3->index)
 		{
@@ -54,7 +52,8 @@ void	ft_rest(t_stack **list)
 			sa(list);
 		}
 	}
-	else
+	else if (node1->index < node3->index
+		&& node1->index > node2 -> index)
 		sa(list);
 }
 

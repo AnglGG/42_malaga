@@ -4,12 +4,13 @@ RM = rm -f
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
-USER		= paromero
+USER		= anggalle
 SRCS		= src/main.c src/args.c src/errors.c src/utils.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/three_algorithm.c src/sorting.c
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I ./libft
 LIBFT		= libft/libft.a
-LIBS		= -L./libft -lft
+PRINTF		= printf/libftprintf.a
+LIBS		= -L./libft -lft -L./printf -lftprintf
 
 NAME = push_swap
 
@@ -23,6 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Compiling objects...$(RESET)"
 	@$(MAKE) -C ./libft
+	@$(MAKE) -C ./printf
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
@@ -34,12 +36,14 @@ $(NAME): $(OBJS)
 clean:
 	@echo "$(GREEN)Cleaning...$(RESET)"
 	@$(MAKE) -C ./libft clean
+	@$(MAKE) -C ./printf clean
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)Clean complete.$(RESET)"
 
 fclean: clean
 	@echo "$(GREEN)Deleting $(NAME)...$(RESET)"
 	@$(MAKE) -C ./libft fclean
+	@$(MAKE) -C ./printf fclean
 	@$(RM) $(NAME)
 	@echo "$(GREEN)Deleted $(NAME)$(RESET)"
 
