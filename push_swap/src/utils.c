@@ -62,17 +62,36 @@ int	count_values(t_stack *list)
 	return (i);
 }
 
-void	assign_pos(t_stack *list)
+double	ft_average(t_stack *list)
 {
+	int		sum;
+	int		count;
 	t_stack	*current;
-	int		i;
 
-	i = 0;
+	sum = 0;
+	count = 0;
 	current = list;
 	while (current != NULL)
 	{
-		current->pos = i;
+		sum += current->index;
+		count++;
 		current = current->next;
-		i++;
 	}
+	if (count == 0)
+		return (0);
+	return ((double)sum / count);
+}
+
+int	verify_index(t_stack *list, double average)
+{
+	t_stack	*current;
+
+	current = list;
+	while (current != NULL)
+	{
+		if (current->index < average)
+			return (1);
+		current = current->next;
+	}
+	return (0);
 }

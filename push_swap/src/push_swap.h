@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:53 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 22:24:29 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:53:33 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_stack
 	int				index;
 	int				pos;
 	int				target_pos;
-	int				cost_a;
-	int				cost_b;
+	int				cost;
+	int				total_cost;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -41,25 +41,30 @@ void	ft_error(void);
 void	check_args(int ac, char **av, t_stack **list);
 void	ft_free(char **tokens);
 void	assign_indexes(t_stack *list);
-void	pb(t_stack **list1, t_stack **list2);
-void	pa(t_stack **list1, t_stack **list2);
+void	pb(t_stack **list_a, t_stack **list_b);
+void	pa(t_stack **list_a, t_stack **list_b);
 void	sa(t_stack **list);
 void	sb(t_stack **list);
-void	ss(t_stack **list1, t_stack **list2);
+void	ss(t_stack **list_a, t_stack **list_b);
 void	ra(t_stack **list);
 void	rb(t_stack **list);
-void	rr(t_stack **list1, t_stack **list2);
+void	rr(t_stack **list_a, t_stack **list_b);
 void	rra(t_stack **list);
 void	rrb(t_stack **list);
-void	rrr(t_stack **list1, t_stack **list2);
+void	rrr(t_stack **list_a, t_stack **list_b);
 void	three_algorithm(t_stack **list);
-void	ft_sorting(t_stack **list1, t_stack **list2);
+void	ft_sorting(t_stack **list_a, t_stack **list_b);
 void	assign_pos(t_stack *list);
 
 t_stack	*ft_lstlastr(t_stack *lst);
 
 int		hasduplicates(t_stack *list);
 int		count_values(t_stack *list);
+int		verify_index(t_stack *list, double average);
+int		ft_abs(int nbr);
+int		nearest_index(int index1, t_stack *list_a);
+
+double	ft_average(t_stack *list);
 
 void	printlist(t_stack *node);
 

@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:36 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 21:58:19 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:50:37 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_rest(t_stack **list)
 		}
 	}
 	else if (node1->index < node3->index
-		&& node1->index > node2 -> index)
+		&& node1->index > node2->index)
 		sa(list);
 }
 
@@ -61,11 +61,11 @@ void	three_algorithm(t_stack **list)
 {
 	t_stack	*node1;
 	t_stack	*node2;
-	t_stack	*node3;
+	//t_stack	*node3;
 
 	node1 = *list;
 	node2 = node1->next;
-	node3 = node2->next;
+	//node3 = node2->next;
 	if (node2->index > node1->index)
 		ft_higher_middle(list);
 	else if (node1->index > node2->index)
