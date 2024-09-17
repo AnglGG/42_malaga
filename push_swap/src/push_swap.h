@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:53 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 13:53:33 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:46:24 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	rrr(t_stack **list_a, t_stack **list_b);
 void	three_algorithm(t_stack **list);
 void	ft_sorting(t_stack **list_a, t_stack **list_b);
 void	assign_pos(t_stack *list);
+void	ft_total_cost(t_stack **list_a, t_stack **list_b);
+void	ft_same_sign(t_stack *node_a, t_stack *node_b);
+void	ft_pass(t_stack **list_a, t_stack **list_b);
+void	final_sort(t_stack **list_a);
+void	ft_different_sign(t_stack **list_a, t_stack **list_b,
+			t_stack *node_a, t_stack *node_b);
 
 t_stack	*ft_lstlastr(t_stack *lst);
 
@@ -63,6 +69,8 @@ int		count_values(t_stack *list);
 int		verify_index(t_stack *list, double average);
 int		ft_abs(int nbr);
 int		nearest_index(int index1, t_stack *list_a);
+int		ft_lowest_cost(t_stack *list);
+int		find_pos_first(t_stack	*list);
 
 double	ft_average(t_stack *list);
 

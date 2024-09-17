@@ -75,7 +75,8 @@ void	one_arg(char *array, t_stack **list)
 		i = 0;
 		while (token[i] != '\0')
 		{
-			if (!isdigit(token[i]))
+			if (!ft_isdigit(token[i]) && token[i] != '-'
+				&& token[i] != '+')
 				ft_error();
 			i++;
 		}
@@ -97,7 +98,8 @@ void	various_args(int ac, char **av, t_stack **list)
 	{
 		while (av[i][j] != '\0')
 		{
-			if (!isdigit(av[i][j]))
+			if (!ft_isdigit(av[i][j]) && av[i][j] != '-'
+				&& av[i][j] != '+')
 			{
 				ft_error();
 			}

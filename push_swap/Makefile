@@ -5,7 +5,7 @@ CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 USER		= anggalle
-SRCS		= src/main.c src/args.c src/errors.c src/utils.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/three_algorithm.c src/sorting.c src/utils_2.c
+SRCS		= src/main.c src/args.c src/errors.c src/utils.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/three_algorithm.c src/sorting.c src/utils_2.c src/signs_moves.c
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I ./libft
 LIBFT		= libft/libft.a

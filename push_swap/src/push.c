@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:00 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 20:34:02 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:50:25 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	push(t_stack **list1, t_stack **list2)
 void	pb(t_stack **list1, t_stack **list2)
 {
 	push(list1, list2);
+	ft_printf("pb\n");
 }
 
 void	pa(t_stack **list1, t_stack **list2)
 {
 	push(list2, list1);
+	ft_printf("pa\n");
 }

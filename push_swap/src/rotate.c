@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:16 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/14 20:34:17 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:51:27 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ void	rotate(t_stack **list)
 void	ra(t_stack **list)
 {
 	rotate(list);
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack **list)
 {
 	rotate(list);
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack **list1, t_stack **list2)
 {
 	rotate(list1);
 	rotate(list2);
+	ft_printf("rr\n");
 }
