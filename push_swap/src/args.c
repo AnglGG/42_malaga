@@ -18,9 +18,12 @@ void	ft_add(t_stack	**list_ref, int new_value)
 	t_stack	*last;
 	int		index;
 
-	new_node = (t_stack *)malloc(sizeof(t_stack));
 	last = *list_ref;
+	new_node = (t_stack *)malloc(sizeof(t_stack));
+	if (new_node == NULL)
+		return ;
 	new_node->value = new_value;
+	new_node->next = NULL;
 	if (*list_ref == NULL)
 	{
 		*list_ref = new_node;
@@ -100,9 +103,9 @@ void	various_args(int ac, char **av, t_stack **list)
 		{
 			if (!ft_isdigit(av[i][j]) && av[i][j] != '-'
 				&& av[i][j] != '+')
-			{
 				ft_error();
-			}
+			if (av[i][j] == '-' && av[i][++j] == '-')
+				ft_error();
 			j++;
 		}
 		j = 0;

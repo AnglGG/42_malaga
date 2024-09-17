@@ -22,6 +22,18 @@ void	printlist(t_stack *node)
 	ft_printf("\n");
 }
 
+void	ft_free_list(t_stack *list)
+{
+	t_stack	*tmp;
+
+	while (list != NULL)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -38,5 +50,6 @@ int	main(int ac, char **av)
 		three_algorithm(&a);
 		ft_sorting(&a, &b);
 	}
+	ft_free_list(a);
 	return (0);
 }
