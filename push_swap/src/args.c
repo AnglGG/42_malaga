@@ -78,12 +78,12 @@ void	one_arg(char *array, t_stack **list)
 		i = 0;
 		while (token[i] != '\0')
 		{
-			if (!ft_isdigit(token[i]) && token[i] != '-'
-				&& token[i] != '+')
+			if ((!ft_isdigit(token[i]) && token[i] != '-' && token[i] != '+')
+				|| (token[i] == '-' && token[++i] == '-'))
 				ft_error();
 			i++;
 		}
-		ft_add(list, ft_atoi(token));
+		ft_add(list, ft_atoi_2(token));
 		j++;
 	}
 	j = 0;
@@ -94,6 +94,7 @@ void	various_args(int ac, char **av, t_stack **list)
 {
 	int	i;
 	int	j;
+	int	num;
 
 	i = 1;
 	j = 0;
@@ -109,7 +110,10 @@ void	various_args(int ac, char **av, t_stack **list)
 			j++;
 		}
 		j = 0;
-		ft_add(list, ft_atoi(av[i]));
+		num = ft_atoi_2(av[i]);
+		if (!num)
+			ft_error();
+		ft_add(list, num);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:53 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:46:24 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:37:44 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		ft_abs(int nbr);
 int		nearest_index(int index1, t_stack *list_a);
 int		ft_lowest_cost(t_stack *list);
 int		find_pos_first(t_stack	*list);
+int		ft_atoi_2(const char *str);
 
 double	ft_average(t_stack *list);
 
