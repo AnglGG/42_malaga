@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:47:50 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:47:44 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:51:27 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	nearest_index(int index1, t_stack *list_a)
 		}
 		compare = compare->next;
 	}
-	if (lower == INT_MAX)
+	if (index2 == INT_MAX)
 		index2 = lower;
 	return (index2);
 }

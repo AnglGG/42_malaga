@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:45:45 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:45:58 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:21:41 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,18 @@ void	ft_different_sign(t_stack **list_a, t_stack **list_b,
 	}
 }
 
-void	ft_same_sign(t_stack *node_a, t_stack *node_b)
+void	ft_same_sign(t_stack **list_a, t_stack **list_b, 
+			t_stack *node_a, t_stack *node_b)
 {
 	if (node_a->cost > 0 && node_b->cost > 0)
 	{
-		rr(&node_a, &node_b);
+		rr(list_a, list_b);
 		node_a->cost--;
 		node_b->cost--;
 	}
 	else if (node_a->cost < 0 && node_b->cost < 0)
 	{
-		rrr(&node_a, &node_b);
+		rrr(list_a, list_b);
 		node_a->cost++;
 		node_b->cost++;
 	}

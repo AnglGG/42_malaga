@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:25 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 20:28:34 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:21:12 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_move(t_stack **list_a, t_stack **list_b)
 		node_a = node_a->next;
 	while (node_b->cost != 0 || node_a->cost != 0)
 	{
-		ft_same_sign(node_a, node_b);
+		ft_same_sign(list_a, list_b, node_a, node_b);
 		ft_different_sign(list_a, list_b, node_a, node_b);
 	}
 }
