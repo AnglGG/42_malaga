@@ -91,10 +91,6 @@ int	main(int ac, char **av)
 		three_algorithm(&a);
 		ft_sorting(&a, &b);
 	}
-	ft_printf("Stack A:\n");
-	printlist(a);
-	ft_printf("Stack B:\n");
-	printlist(b);
 	ft_free_list(a);
 	return (0);
 }
