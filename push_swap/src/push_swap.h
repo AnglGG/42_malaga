@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:53 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/19 01:22:11 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:51:27 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	three_algorithm(t_stack **list);
 void	ft_sorting(t_stack **list_a, t_stack **list_b);
 void	assign_pos(t_stack *list);
 void	ft_total_cost(t_stack **list_a, t_stack **list_b);
-void	ft_same_sign(t_stack **list_a, t_stack **list_b, 
+void	ft_same_sign(t_stack **list_a, t_stack **list_b,
 			t_stack *node_a, t_stack *node_b);
 void	ft_pass(t_stack **list_a, t_stack **list_b);
 void	final_sort(t_stack **list_a);
 void	ft_different_sign(t_stack **list_a, t_stack **list_b,
 			t_stack *node_a, t_stack *node_b);
+void	two_algorithm(t_stack **list);
 
 t_stack	*ft_lstlastr(t_stack *lst);
 
@@ -73,6 +74,7 @@ int		nearest_index(int index1, t_stack *list_a);
 int		ft_lowest_cost(t_stack *list);
 int		find_pos_first(t_stack	*list);
 int		ft_atoi_2(const char *str);
+int		check_sorted(t_stack *list);
 
 double	ft_average(t_stack *list);
 

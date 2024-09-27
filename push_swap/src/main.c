@@ -61,18 +61,6 @@ void	ft_free_list(t_stack *list)
 	}
 }
 
-void	two_algorithm(t_stack **list)
-{
-	t_stack	*node1;
-	t_stack	*node2;
-
-	node1 = *list;
-	node2 = node1->next;
-	if (node1->index > node2->index)
-		sa(list);
-
-}
-
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -81,20 +69,23 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	check_args(ac, av, &a);
-	if (count_values(a) == 3)
-		three_algorithm(&a);
-	else if (count_values(a) == 2)
-		two_algorithm(&a);
-	else if (count_values(a) > 3)
+	if (check_sorted(a))
+		return (0);
+	else
 	{
-		ft_pass(&a, &b);
-		three_algorithm(&a);
-		ft_sorting(&a, &b);
+		if (count_values(a) == 3)
+			three_algorithm(&a);
+		else if (count_values(a) == 2)
+			two_algorithm(&a);
+		else if (count_values(a) > 3)
+		{
+			ft_pass(&a, &b);
+			three_algorithm(&a);
+			ft_sorting(&a, &b);
+		}
+		printlist(a);
+		printlist(b);
+		ft_free_list(a);
 	}
-	ft_printf("Lista A:");
-	printlist(a);
-	ft_printf("Lista B:");
-	printlist(b);
-	ft_free_list(a);
 	return (0);
 }

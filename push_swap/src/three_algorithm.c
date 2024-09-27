@@ -6,11 +6,22 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:34:36 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:38:36 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:52:28 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	two_algorithm(t_stack **list)
+{
+	t_stack	*node1;
+	t_stack	*node2;
+
+	node1 = *list;
+	node2 = node1->next;
+	if (node1->index > node2->index)
+		sa(list);
+}
 
 void	ft_higher_middle(t_stack **list)
 {
