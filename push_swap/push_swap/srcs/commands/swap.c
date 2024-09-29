@@ -5,42 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 20:34:31 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:51:56 by anggalle         ###   ########.fr       */
+/*   Created: 2024/09/29 02:15:18 by anggalle          #+#    #+#             */
+/*   Updated: 2024/09/29 02:16:15 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-void	swap(t_stack **list)
+static void	swap(t_stack **head)
 {
-	t_stack	*node;
-
-	node = NULL;
-	if (*list != NULL)
-	{
-		node = *list;
-		*list = (*list)->next;
-		node->next = (*list)->next;
-		(*list)->next = node;
-	}
+	if (!*head || !(*head)->next)
+		return ;
+	*head = (*head)->next;
+	(*head)->prev->prev = *head;
+	(*head)->prev->next = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
 }
 
-void	sa(t_stack **list)
+void	sa(t_stack	**a, bool print)
 {
-	swap(list);
-	ft_printf("sa\n");
+	swap(a);
+	if (!print)
+		ft_printf("sa\n");
 }
 
-void	sb(t_stack **list)
+void	sb(t_stack **b, bool print)
 {
-	swap(list);
-	ft_printf("sb\n");
+	swap(b);
+	if (!print)
+		ft_printf("sb\n");
 }
 
-void	ss(t_stack **list1, t_stack **list2)
+void	ss(t_stack **a, t_stack **b, bool print)
 {
-	swap(list1);
-	swap(list2);
-	ft_printf("ss\n");
+	swap(a);
+	swap(b);
+	if (!print)
+		ft_printf("ss\n");
 }

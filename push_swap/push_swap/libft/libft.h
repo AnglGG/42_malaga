@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:36:24 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/18 14:36:13 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:36:43 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
-# include <limits.h>
 
 typedef struct s_list
 {

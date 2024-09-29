@@ -5,19 +5,35 @@ CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 USER		= anggalle
-SRCS		= src/main.c src/args.c src/errors.c src/utils.c src/push.c src/swap.c src/rotate.c src/reverse_rotate.c src/three_algorithm.c src/sorting.c src/utils_2.c src/signs_moves.c src/utils3.c
+SRC_DIR		= ./srcs/
+
+COMMANDS_DIR	=	$(SRC_DIR)commands/push.c \
+			$(SRC_DIR)commands/rev_rotate.c \
+			$(SRC_DIR)commands/rotate.c \
+			$(SRC_DIR)commands/sort_stacks.c \
+			$(SRC_DIR)commands/sort_three.c \
+			$(SRC_DIR)commands/swap.c
+
+PUSH_SWAP_DIR	=	$(SRC_DIR)push_swap/handle_errors.c \
+			$(SRC_DIR)push_swap/init_a_to_b.c \
+			$(SRC_DIR)push_swap/init_b_to_a.c \
+			$(SRC_DIR)push_swap/push_swap.c \
+			$(SRC_DIR)push_swap/stack_init.c \
+			$(SRC_DIR)push_swap/stack_utils.c
+
+SRCS 		= $(COMMANDS_DIR) $(PUSH_SWAP_DIR)
+
 OBJS		= $(SRCS:.c=.o)
-INCLUDES	= -I ./libft
+INCLUDES	= -I ./libft -I ./printf
 LIBFT		= libft/libft.a
 PRINTF		= printf/libftprintf.a
 LIBS		= -L./libft -lft -L./printf -lftprintf
 
-NAME = push_swap
+NAME		= push_swap
 
 # Colores
-#
-GREEN = \033[1;32m
-RESET = \033[0m
+GREEN		= \033[1;32m
+RESET		= \033[0m
 
 all: $(NAME)
 

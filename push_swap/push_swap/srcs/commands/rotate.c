@@ -5,54 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 20:34:16 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/17 16:51:27 by anggalle         ###   ########.fr       */
+/*   Created: 2024/09/29 02:15:11 by anggalle          #+#    #+#             */
+/*   Updated: 2024/09/29 02:16:35 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../inc/push_swap.h"
 
-t_stack	*ft_lstlastr(t_stack *lst)
+static void	rotate(t_stack **stack)
 {
-	t_stack	*tmp;
+	t_stack	*last_node;
 
-	tmp = lst;
-	if (!tmp)
-		return (NULL);
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
+	if (!*stack || !(*stack)->next)
+		return ;
+	last_node = find_last(*stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->prev = last_node;
+	last_node->next->next = NULL;
 }
 
-void	rotate(t_stack **list)
+void	ra(t_stack **a, bool print)
 {
-	t_stack	*node;
-
-	node = NULL;
-	if (*list != NULL)
-	{
-		node = *list;
-		*list = (*list)->next;
-		node->next = NULL;
-		ft_lstlastr(*list)->next = node;
-	}
+	rotate(a);
+	if (!print)
+		ft_printf("ra\n");
 }
 
-void	ra(t_stack **list)
+void	rb(t_stack **b, bool print)
 {
-	rotate(list);
-	ft_printf("ra\n");
+	rotate(b);
+	if (!print)
+		ft_printf("rb\n");
 }
 
-void	rb(t_stack **list)
+void	rr(t_stack **a, t_stack **b, bool print)
 {
-	rotate(list);
-	ft_printf("rb\n");
-}
-
-void	rr(t_stack **list1, t_stack **list2)
-{
-	rotate(list1);
-	rotate(list2);
-	ft_printf("rr\n");
+	rotate(a);
+	rotate(b);
+	if (!print)
+		ft_printf("rr\n");
 }
