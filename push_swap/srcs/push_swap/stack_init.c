@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:29 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/29 02:18:34 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:48:43 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,16 @@ void	init_stack_a(t_stack **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
+		{
+			free_argv(argv);
 			ft_errors(a);
+		}
 		n = ft_atoi_2(argv[i], a);
 		if (error_duplicate(*a, (int)n))
+		{
+			free_argv(argv);
 			ft_errors(a);
+		}
 		append_node(a, (int)n);
 		i++;
 	}

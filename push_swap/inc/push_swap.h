@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:19:30 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/29 02:22:19 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:43:36 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void			pa(t_stack **a, t_stack **b, bool print);
 void			pb(t_stack **b, t_stack **a, bool print);
 void			sort_three(t_stack **a);
 void			sort_stacks(t_stack **a, t_stack **b);
+void			free_argv(char **argv);
 
 #endif

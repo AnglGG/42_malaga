@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:21 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/29 02:15:22 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:42:58 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ int	error_duplicate(t_stack *a, int n)
 		a = a->next;
 	}
 	return (0);
+}
+
+void	free_argv(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i ++;
+	}
+	free(argv);
 }
 
 void	free_stack(t_stack **stack)

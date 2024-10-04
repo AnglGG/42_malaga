@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:09:25 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 14:10:11 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:52:58 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ void	execute_instruction(char *instruction, t_stack **a, t_stack **b)
 		write(2, "Error\n", 6);
 }
 
+void	execute(t_stack *a, t_stack *b, char **argv)
+{
+	if (stack_sorted(a) && b == NULL)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	free_argv(argv);
+	free_stack(&a);
+	free_stack(&b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -50,22 +61,20 @@ int	main(int argc, char **argv)
 	line = get_next_line(0);
 	a = NULL;
 	b = NULL;
-	if (argc == 1 || (argc == 2 && (!argv[1][0] || error_syntax(&argv[1][0]))))
+	if (argc == 1 || (argc == 2 && (!argv[1][0])))
 		return (1);
 	else if (argc == 2)
+	{
 		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
+		init_stack_a(&a, argv);
+	}
+	else
+		init_stack_a(&a, argv + 1);
 	while (line > 0)
 	{
 		execute_instruction(line, &a, &b);
 		free(line);
 		line = get_next_line(0);
 	}
-	if (stack_sorted(a) && b == NULL)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+	execute(a, b, argv);
 }

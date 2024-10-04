@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 13:54:26 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:48:25 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
+	free_argv(argv);
 	free_stack(&a);
-	return (0);
 }

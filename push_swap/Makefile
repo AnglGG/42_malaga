@@ -21,7 +21,7 @@ PUSH_SWAP_DIR	=	$(SRC_DIR)push_swap/handle_errors.c \
 			$(SRC_DIR)push_swap/stack_init.c \
 			$(SRC_DIR)push_swap/stack_utils.c
 
-CHECKER_DIR	=	checker_src/checker.c \
+CHECKER_DIR	=	checker_bonus/checker.c \
 			$(SRC_DIR)push_swap/handle_errors.c \
 			$(SRC_DIR)push_swap/stack_init.c \
 			$(SRC_DIR)push_swap/stack_utils.c \
