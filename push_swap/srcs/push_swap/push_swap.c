@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/29 02:18:47 by anggalle         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:54:26 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc == 1 || (argc == 2 && (!argv[1][0] || error_syntax(&argv[1][0]))))
+	if (argc == 1 || (argc == 2 && (!argv[1][0])))
 		return (1);
 	else if (argc == 2)
+	{
 		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
+		init_stack_a(&a, argv);
+	}
+	else
+		init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

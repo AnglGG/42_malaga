@@ -21,10 +21,15 @@ PUSH_SWAP_DIR	=	$(SRC_DIR)push_swap/handle_errors.c \
 			$(SRC_DIR)push_swap/stack_init.c \
 			$(SRC_DIR)push_swap/stack_utils.c
 
-CHECKER_DIR	=	checker_src/checker.c
+CHECKER_DIR	=	checker_src/checker.c \
+			$(SRC_DIR)push_swap/handle_errors.c \
+			$(SRC_DIR)push_swap/stack_init.c \
+			$(SRC_DIR)push_swap/stack_utils.c \
+			$(SRC_DIR)push_swap/init_a_to_b.c \
+			$(SRC_DIR)push_swap/init_b_to_a.c
 
 SRCS_PUSH_SWAP = $(COMMANDS_DIR) $(PUSH_SWAP_DIR)
-SRCS_CHECKER	= $(COMMANDS_DIR) $(PUSH_SWAP_DIR) $(CHECKER_DIR)
+SRCS_CHECKER	= $(COMMANDS_DIR) $(CHECKER_DIR) 
 
 OBJS_PUSH_SWAP	= $(SRCS_PUSH_SWAP:.c=.o)
 OBJS_CHECKER	= $(SRCS_CHECKER:.c=.o)
@@ -35,7 +40,7 @@ PRINTF		= printf/libftprintf.a
 LIBS		= -L./libft -lft -L./printf -lftprintf
 
 NAME		= push_swap
-CHECKER		= checker_exec
+CHECKER		= checker
 
 # Colores
 GREEN		= \033[1;32m
