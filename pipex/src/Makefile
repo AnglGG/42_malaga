@@ -1,12 +1,11 @@
-LIB = ar rcs
+# Comandos
 RM = rm -f
-
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
+# Archivos
 NAME = pipex
-SRC = pipex.c
-
+SRC = pipex.c utils.c
 OBJ = $(SRC:.c=.o)
 INCLUDE = ft_pipex.h
 
@@ -14,6 +13,7 @@ INCLUDE = ft_pipex.h
 GREEN = \033[1;32m
 RESET = \033[0m
 
+# Reglas
 all: $(NAME)
 
 $(NAME): $(OBJ)
