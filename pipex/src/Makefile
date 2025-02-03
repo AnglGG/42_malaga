@@ -7,7 +7,11 @@ CCFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 SRC = pipex.c utils.c
 OBJ = $(SRC:.c=.o)
-INCLUDE = ft_pipex.h
+INCLUDE = pipex.h
+
+SRCS_BONUS = pipex_bonus.c
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+NAME_BONUS = pipex_bonus
 
 # Colores
 GREEN = \033[1;32m
@@ -26,16 +30,21 @@ $(NAME): $(OBJ)
 	@$(CC) $(CCFLAGS) -I. -c -o $@ $<
 	@echo "$(GREEN)$< compiled!$(RESET)"
 
+bonus: $(NAME_BONUS)
+	@echo "$(GREEN)Creating pipex_bonus...$(RESET)"
+	@$(CC) $(CCFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS)
+	@echo "$(GREEN)Pipex_bonus created: $(NAME)$(RESET)"
+
 clean:
 	@echo "$(GREEN)Cleaning...$(RESET)"
 	@$(RM) $(OBJ)
 	@echo "$(GREEN)Clean complete.$(RESET)"
 
 fclean: clean
-	@echo "$(GREEN)Deleting $(NAME)...$(RESET)"
-	@$(RM) $(NAME)
-	@echo "$(GREEN)Deleted $(NAME)$(RESET)"
+	@echo "$(GREEN)Deleting $(NAME)$(NAME_BONUS)...$(RESET)"
+	@$(RM) $(NAME) $(NAME_BONUS)
+	@echo "$(GREEN)Deleted $(NAME)$(NAME_BONUS)$(RESET)"
 
-re: fclean all
+re: fclean all bonus
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
