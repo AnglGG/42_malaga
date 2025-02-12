@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_here_doc.c                                   :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 17:12:48 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/03 17:13:17 by anggalle         ###   ########.fr       */
+/*   Created: 2024/03/07 00:38:14 by anggalle          #+#    #+#             */
+/*   Updated: 2024/06/23 12:40:46 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pipex.h"
+#include "libft.h"
 
-int	is_here_doc()
+int	ft_isalpha(int c)
 {
-	
-}
+	int	alpha;
 
-void	here_doc()
-{
-	
+	alpha = 0;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		alpha = 1;
+	return (alpha);
 }

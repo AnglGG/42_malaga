@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:36:24 by anggalle          #+#    #+#             */
-/*   Updated: 2024/12/22 20:45:23 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:53:33 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
-int		ft_strlen(const char *c);
+//int		ft_strlen(const char *c);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -53,7 +53,7 @@ char	*ft_strdup(const char *s1);
 
 //Parte 2 - Funciones adicionales
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+//char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
@@ -100,5 +100,13 @@ int		ft_left_justification(const char **format, va_list args,
 			t_flags flags);
 int		ft_right_justification(const char **format, va_list args,
 			t_flags flags);
+
+/* get_next_line */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+void	fill_str(char *res, char *s1, char *s2);
 
 #endif

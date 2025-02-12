@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 12:58:16 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/09 19:43:09 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:13:08 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*extract_line(char	*line)
 		i ++;
 	if (line[i] == '\0')
 		return (NULL);
-	remaining = ft_substr(line, i + 1, ft_strlen(line) - i);
+	remaining = ft_substr(line, i + 1, ft_strlen((const char *)line) - i);
 	if (*remaining == '\0')
 	{
 		free(remaining);

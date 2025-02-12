@@ -9,7 +9,7 @@ SRC = pipex.c utils.c
 OBJ = $(SRC:.c=.o)
 INCLUDE = pipex.h
 
-SRCS_BONUS = pipex_bonus.c
+SRCS_BONUS = pipex_bonus.c utils_bonus.c here_doc.c
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 NAME_BONUS = pipex_bonus
 
@@ -31,9 +31,11 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)$< compiled!$(RESET)"
 
 bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS)
 	@echo "$(GREEN)Creating pipex_bonus...$(RESET)"
-	@$(CC) $(CCFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS)
-	@echo "$(GREEN)Pipex_bonus created: $(NAME)$(RESET)"
+	@$(CC) $(CCFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) ../libft/libft.a
+	@echo "$(GREEN)Pipex_bonus created: $(NAME_BONUS)$(RESET)"
 
 clean:
 	@echo "$(GREEN)Cleaning...$(RESET)"
