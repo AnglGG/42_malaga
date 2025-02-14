@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:51:50 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/12 14:02:16 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:38:02 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	count_lines(const char *filename)
 
 void	count_cols(t_map *map)
 {
-	while (map[0][map->num_cols] && map[0][map->num_cols] != '\n')
-		map->num_cols++;
+	while (map->copy[0][map->num_columns] && map->copy[0][map->num_columns] != '\n')
+		map->num_columns++;
 }
 
 char	**read_map(char *filename, int *num_lines)
@@ -68,10 +68,34 @@ char	**read_map(char *filename, int *num_lines)
 	return (map);
 }
 
+void	player_position(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->copy[i])
+	{
+		j = 0;
+		while (map->copy[i][j] && map->copy[i][j] != '\n')
+		{
+			if (map->copy[i][j] == 'P')
+			{
+				map->player_y = i;
+				map->player_x = j;
+				break;
+			}
+			j++;
+		}
+		i ++;
+	}
+}
+
 void	inicialize_map(t_map *map, char *filename)
 {
 	map->move_count = 0;
-	map->num_cols = 0;
+	map->num_columns = 0;
 	map->num_lines = 0;
 	map->player_x = 0;
 	map->player_y = 0;
@@ -80,5 +104,5 @@ void	inicialize_map(t_map *map, char *filename)
 	map->p = 0;
 	map->f = 0;
 	map->w = 0;
-	map->copy = read_map(filename, map->num_lines);
+	map->copy = read_map(filename, &map->num_lines);
 }

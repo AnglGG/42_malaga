@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:54:11 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/12 14:07:38 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:58:52 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_characters(t_map *map)
 	int		j;
 
 	i = 0;
-	while (map->copy[i++])
+	while (map->copy[i])
 	{
 		j = 0;
 		while (map->copy[i][j] && map->copy[i][j] != '\n')
@@ -62,22 +62,22 @@ void	check_characters(t_map *map)
 	}
 }
 
-void	check_boundaries(t_map map)
+void	check_boundaries(t_map *map)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while (j < map->num_cols)
+	while (j < map->num_columns)
 	{
 		if (map->copy[0][j] != '1' || map->copy[map->num_lines - 1][j] != '1')
 			error_and_exit("El mapa no está cerrado.");
 		j ++;
 	}
-	i = 1;
-	while (i < num_lines - 1)
+	i = 0;
+	while (i < map->num_lines - 1)
 	{
-		if (map->copy[i][0] != '1' || map->copy[i][map->num_cols - 1] != '1')
+		if (map->copy[i][0] != '1' || map->copy[i][map->num_columns - 1] != '1')
 			error_and_exit("El mapa no está cerrado en los laterales.");
 		i ++;
 	}
@@ -95,9 +95,10 @@ void	validate_characters(t_map *map)
 
 void	validate_map(t_map *map)
 {
-	check_rectangular(map->copy)
+	check_rectangular(map->copy);
 	check_characters(map);
 	validate_characters(map);
-	check_boundaries(map, num_lines);
 	count_cols(map);
+	check_boundaries(map);
+	player_position(map);
 }

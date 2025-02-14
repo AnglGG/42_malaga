@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:33 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/10 19:37:10 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:11:16 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ static int	count_collectibles(char **map)
 
 int	check_exit(t_game *game, int new_x, int new_y)
 {
-	if (game->map[new_y][new_x] == 'E')
+	if (game->map.copy[new_y][new_x] == 'E')
 	{
-		if (count_collectibles(game->map) == 0)
+		if (count_collectibles(game->map.copy) == 0)
 		{
-			ft_printf("¡Has ganado en %d movimientos!\n", game->move_count);
-			/* Aquí podrías, en lugar de simplemente cerrar la ventana,
-			   mostrar una pantalla de victoria si así lo deseas */
-			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-			exit(0);
+			ft_printf("¡Has ganado en %d movimientos!\n", game->map.move_count);
+			ft_win(game);
 		}
 		else
 		{
@@ -54,38 +51,48 @@ int	check_exit(t_game *game, int new_x, int new_y)
 	}
 	return(1);
 }
+void	compute_new_position(int keysym, int *new_x, int *new_y)
+{
+	if (keysym == DOWN)
+		(*new_y)++;
+	else if (keysym == UP)
+		(*new_y)--;
+	else if (keysym == LEFT)
+		(*new_x)--;
+	else if (keysym == RIGHT)
+		(*new_x)++;
+}
+
+void	update_player_position(t_game *game, int new_x, int new_y)
+{
+	game->map.move_count++;
+	ft_printf("Movimientos: %d\n", game->map.move_count);
+	game->map.copy[game->map.player_y][game->map.player_x] = '0';
+	game->map.copy[new_y][new_x] = 'P';
+	game->map.player_y = new_y;
+	game->map.player_x = new_x;
+	render_map(game, &game->map, &game->imgs);
+}
 
 int	handle_key(int keysym, t_game *game)
 {
 	int	new_x;
 	int	new_y;
 
-	new_x = game->player_x;
-	new_y = game->player_y;
-	if (keysym == DOWN)
-		new_y++;
-	else if (keysym == UP)
-		new_y--;
-	else if (keysym == LEFT)
-		new_x--;
-	else if (keysym == RIGHT)
-		new_x++;
-	else if (keysym == XK_Escape)
+	new_x = game->map.player_x;
+	new_y = game->map.player_y;
+	if (keysym == XK_Escape)
 	{
+		free_game(game);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
 		exit(0);
 	}
+	compute_new_position(keysym, &new_x, &new_y);
 	if (!check_exit(game, new_x, new_y))
 		return (0);
-	if (game->map[new_y][new_x] != '1')
-	{
-		game->move_count++;
-		ft_printf("Movimientos: %d\n", game->move_count);
-		game->map[game->player_y][game->player_x] = '0';
-		game->map[new_y][new_x] = 'P';
-		game->player_y = new_y;
-		game->player_x = new_x;
-		render_map(game->mlx_ptr, game->win_ptr, game->map, &game->imgs);
-	}
+	if (game->map.copy[new_y][new_x] != '1')
+		update_player_position(game, new_x, new_y);
 	return (0);
 }

@@ -4,13 +4,12 @@ CC = gcc
 
 # Archivos y directorios
 NAME = so_long
-SRC = src/main.c src/render.c src/map.c src/events.c
+SRC = src/main.c src/render.c src/map.c src/events.c src/errors.c src/exit_page.c src/free.c src/parse_map.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-# Directorios e includes (ajusta según tu estructura)
-INCLUDE = /minilibx-linux/mlx_init.h includes/map.h includes/render.h includes/so_long.h
+INCLUDE = /minilibx-linux/mlx_init.h includes/so_long.h
 
 # Colores
 GREEN = \033[1;32m
