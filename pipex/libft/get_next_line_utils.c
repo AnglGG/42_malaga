@@ -6,18 +6,18 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:20:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/02 18:46:22 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:42:16 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(char *s1)
+char	*gnl_strdup(char *s1)
 {
 	char			*dest;
 	unsigned int	i;
 
-	dest = (char *) malloc(ft_strlen(s1) + 1);
+	dest = (char *) malloc(gnl_strlen(s1) + 1);
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -30,7 +30,7 @@ char	*ft_strdup(char *s1)
 	return (dest);
 }
 
-size_t	ft_strlen(char *s)
+size_t	gnl_strlen(char *s)
 {
 	int	i;
 
@@ -40,17 +40,17 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*gnl_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*str;
 
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
+	if (start > gnl_strlen(s))
 		return (malloc(1));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
+	if (len > gnl_strlen(s + start))
+		len = gnl_strlen(s + start);
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -64,11 +64,11 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char			*res;
 
-	res = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	res = (char *) malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	fill_str(res, s1, s2);

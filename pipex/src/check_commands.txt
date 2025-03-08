@@ -1,0 +1,26 @@
+PRUEBAS PARA PIPEX (PARTE OBLIGATORIA)
+
+Prueba básica con “ls -l” y “wc -l”
+Ejecutar con pipex: ./pipex infile "ls -l" "wc -l" outfile
+Comando equivalente en Linux: < infile ls -l | wc -l > outfile
+
+Prueba básica con “grep a1” y “wc -w”
+Ejecutar con pipex: ./pipex infile "grep a1" "wc -w" outfile
+Comando equivalente en Linux: < infile grep a1 | wc -w > outfile
+
+Prueba con comando inexistente (gestión de errores)
+Ejecutar con pipex: ./pipex infile "comando_inexistente" "wc -l" outfile
+Comando equivalente en Linux: < infile comando_inexistente | wc -l > outfile
+
+
+Prueba con argumentos insuficientes
+Ejecutar con pipex: ./pipex infile "ls -l" outfile
+
+PRUEBAS PARA PIPEX_BONUS (PARTE EXTRA)
+Prueba con múltiples pipes (más de dos comandos)
+Ejecutar con pipex: ./pipex_bonus infile "cat -e" "grep -v '^$'" "wc -l" outfile
+Comando equivalente en Linux: < infile cat -e | grep -v '^$' | wc -l > outfile
+
+Prueba con here_doc
+Ejecutar con pipex: ./pipex_bonus here_doc LIMITADOR "tr a-z A-Z" "rev" outfile
+Comando equivalente en Linux: tr a-z A-Z << LIMITADOR | rev >> outfile

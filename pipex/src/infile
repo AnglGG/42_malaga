@@ -1,0 +1,9 @@
+total 44
+-rw-r--r-- 1 anggalle anggalle  1301 Mar  8 11:26 Makefile
+drwxr-xr-x 4 anggalle anggalle  4096 Mar  8 11:18 PipexTester
+drwxr-xr-x 2 anggalle anggalle  4096 Mar  8 11:23 bonus
+-rw-r--r-- 1 anggalle anggalle     0 Mar  8 11:00 check_commands
+-rw-r--r-- 1 anggalle anggalle     0 Mar  8 11:35 infile
+drwxr-xr-x 2 anggalle anggalle  4096 Mar  8 11:24 mandatory
+-rw-r--r-- 1 anggalle anggalle     0 Mar  8 11:35 outfile
+-rwxr-xr-x 1 anggalle anggalle 26080 Mar  8 11:26 pipex

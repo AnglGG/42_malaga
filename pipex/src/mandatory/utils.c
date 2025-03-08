@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:37:19 by anggalle          #+#    #+#             */
-/*   Updated: 2025/01/12 14:39:28 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:24:34 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_args(int argc, int *fd)
 {
 	if (argc != 5)
 	{
-		write(STDERR_FILENO, "Error: Número de argumentos incorrecto\n", 39);
+		ft_printf("Error: Número de argumentos incorrecto\n");
 		exit(EXIT_FAILURE);
 	}
 	if (pipe(fd) == -1)
@@ -26,18 +26,37 @@ void	check_args(int argc, int *fd)
 	}
 }
 
-void	create_command(char **cmd, char *argv)
+char	*create_command(char *cmd, char **envp, char **complete_command)
 {
-	cmd[0] = "/bin/sh";
-	cmd[1] = "-c";
-	cmd[2] = argv;
-	cmd[3] = NULL;
+	char	*env_path;
+	char	**cmd_path;
+	char	*total_cmd;
+	char	*valid_path;
+
+	if (!cmd)
+		return (NULL);
+	env_path = find_variable_in_env(envp, "PATH=");
+	if (!env_path)
+		return (NULL);
+	cmd_path = ft_split(env_path, ':');
+	free(env_path);
+	if (!cmd_path)
+		return (NULL);
+	total_cmd = ft_strcat("/", complete_command[0]);
+	if (!total_cmd)
+		return (handle_invalid_cmd_path(cmd_path, total_cmd));
+	valid_path = find_valid_path(cmd_path, total_cmd);
+	if (!valid_path)
+		return (handle_invalid_cmd_path(cmd_path, total_cmd));
+	free_cmd_path(cmd_path, total_cmd);
+	return (valid_path);
 }
 
 void	child_process_1(int *fd, char **argv, char **envp)
 {
 	int		input_file;
-	char	*cmd[4];
+	char	*path;
+	char	**complete_command;
 
 	input_file = open(argv[1], O_RDONLY);
 	if (input_file == -1)
@@ -50,16 +69,23 @@ void	child_process_1(int *fd, char **argv, char **envp)
 	close (fd[0]);
 	dup2(fd[1], STDOUT_FILENO);
 	close (fd[1]);
-	create_command(cmd, argv[2]);
-	execve("/bin/sh", cmd, envp);
-	perror("Error ejecutando el primer comando");
-	exit(-1);
+	complete_command = ft_split(argv[2], ' ');
+	path = create_command(argv[2], envp, complete_command);
+	if (path)
+	{
+		execve(path, complete_command, envp);
+		perror("Error ejecutando el primer comando");
+		exit(-1);
+	}
+	write(2, "Comando incorrecto\n", 19);
+	free_matrix(complete_command);
 }
 
 void	child_process_2(int *fd, char **argv, char **envp)
 {
 	int		output_file;
-	char	*cmd[4];
+	char	*path;
+	char	**complete_command;
 
 	output_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (output_file == -1)
@@ -72,10 +98,15 @@ void	child_process_2(int *fd, char **argv, char **envp)
 	close (fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close (fd[0]);
-	create_command(cmd, argv[3]);
-	execve("/bin/sh", cmd, envp);
-	perror("Error ejecutando el segundo comando");
-	exit(-1);
+	complete_command = ft_split(argv[3], ' ');
+	path = create_command(argv[3], envp, complete_command);
+	if (path)
+	{
+		execve(path, complete_command, envp);
+		perror("Error ejecutando el segundo comando");
+		exit(-1);
+	}
+	free_matrix(complete_command);
 }
 
 void	parent_process(int *pid_fork_2, int *fd, char **argv, char **envp)

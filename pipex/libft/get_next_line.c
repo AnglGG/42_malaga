@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:14:38 by anggalle          #+#    #+#             */
-/*   Updated: 2024/09/09 19:43:03 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:41:41 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static char	*read_and_append(int fd, char *remaining, char *buffer)
 			break ;
 		buffer[bytes_read] = '\0';
 		if (!remaining)
-			remaining = ft_strdup("");
+			remaining = gnl_strdup("");
 		temp = remaining;
-		remaining = ft_strjoin(temp, buffer);
+		remaining = gnl_strjoin(temp, buffer);
 		free(temp);
 		if (ft_find_char(buffer, '\n'))
 			break ;
@@ -68,7 +68,7 @@ static char	*extract_line(char	*line)
 		i ++;
 	if (line[i] == '\0')
 		return (NULL);
-	remaining = ft_substr(line, i + 1, ft_strlen(line) - i);
+	remaining = gnl_substr(line, i + 1, gnl_strlen(line) - i);
 	if (*remaining == '\0')
 	{
 		free(remaining);

@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 19:48:31 by anggalle          #+#    #+#             */
-/*   Updated: 2025/01/12 14:39:06 by anggalle         ###   ########.fr       */
+/*   Created: 2025/03/07 20:19:00 by anggalle          #+#    #+#             */
+/*   Updated: 2025/03/07 20:21:59 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-int	main(int argc, char **argv, char **envp)
+void	error_exit(t_pipex_data *data, const char *msg)
 {
-	int	pid_fork;
-	int	pid_fork_2;
-	int	fd[2];
-
-	check_args(argc, fd);
-	pid_fork = fork();
-	if (pid_fork == -1)
-	{
-		perror("Error en el fork");
-		exit(-1);
-	}
-	else if (pid_fork == 0)
-	{
-		child_process_1(fd, argv, envp);
-	}
-	else
-	{
-		parent_process(&pid_fork_2, fd, argv, envp);
-	}
-	waitpid(pid_fork, NULL, 0);
-	waitpid(pid_fork_2, NULL, 0);
+	perror(msg);
+	free(data);
+	exit(EXIT_FAILURE);
 }
