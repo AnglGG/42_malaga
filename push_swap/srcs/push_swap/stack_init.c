@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:29 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 21:48:43 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:50:59 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,22 @@ int	ft_atoi_2(const char *str, t_stack **a)
 	return ((int)number);
 }
 
-static void	append_node(t_stack **stack, int n)
+void	append_node(t_stack **stack, int n)
 {
 	t_stack	*node;
 	t_stack	*last_node;
 
-	if (!stack)
-		return ;
 	node = malloc(sizeof(t_stack));
 	if (!node)
 		return ;
 	node->next = NULL;
+	node->prev = NULL;
 	node->value = n;
+	node->index = -1;
+	node->above_median = false;
+	node->push_cost = 0;
+	node->cheapest = false;
+	node->target_node = NULL;
 	if (!(*stack))
 	{
 		*stack = node;
@@ -64,7 +68,7 @@ static void	append_node(t_stack **stack, int n)
 	}
 }
 
-void	init_stack_a(t_stack **a, char **argv)
+void	init_stack_a(t_stack **a, char **argv, int argc)
 {
 	long	n;
 	int		i;
@@ -74,16 +78,17 @@ void	init_stack_a(t_stack **a, char **argv)
 	{
 		if (error_syntax(argv[i]))
 		{
-			free_argv(argv);
+			free_argv(argv, argc);
 			ft_errors(a);
 		}
 		n = ft_atoi_2(argv[i], a);
 		if (error_duplicate(*a, (int)n))
 		{
-			free_argv(argv);
+			free_argv(argv, argc);
 			ft_errors(a);
 		}
-		append_node(a, (int)n);
+		if (a)
+			append_node(a, (int)n);
 		i++;
 	}
 }

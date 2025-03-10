@@ -6,12 +6,45 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:09:25 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 21:52:58 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:56:40 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include <unistd.h>
+
+static int	manage_error(char *line)
+{
+	free(line);
+	return (1);
+}
+
+static void	init_stack_a_checker(t_stack **a, char **argv, int argc, char *line)
+{
+	long	n;
+	int		i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (error_syntax(argv[i]))
+		{
+			free(line);
+			free_argv(argv, argc);
+			ft_errors(a);
+		}
+		n = ft_atoi_2(argv[i], a);
+		if (error_duplicate(*a, (int)n))
+		{
+			free(line);
+			free_argv(argv, argc);
+			ft_errors(a);
+		}
+		if (a)
+			append_node(a, (int)n);
+		i++;
+	}
+}
 
 void	execute_instruction(char *instruction, t_stack **a, t_stack **b)
 {
@@ -41,13 +74,13 @@ void	execute_instruction(char *instruction, t_stack **a, t_stack **b)
 		write(2, "Error\n", 6);
 }
 
-void	execute(t_stack *a, t_stack *b, char **argv)
+void	execute(t_stack *a, t_stack *b, char **argv, int argc)
 {
 	if (stack_sorted(a) && b == NULL)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free_argv(argv);
+	free_argv(argv, argc);
 	free_stack(&a);
 	free_stack(&b);
 }
@@ -62,19 +95,19 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && (!argv[1][0])))
-		return (1);
+		return (manage_error(line));
 	else if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		init_stack_a(&a, argv);
+		init_stack_a_checker(&a, argv, argc, line);
 	}
 	else
-		init_stack_a(&a, argv + 1);
-	while (line > 0)
+		init_stack_a_checker(&a, argv + 1, argc, line);
+	while (line != NULL)
 	{
 		execute_instruction(line, &a, &b);
 		free(line);
 		line = get_next_line(0);
 	}
-	execute(a, b, argv);
+	execute(a, b, argv, argc);
 }

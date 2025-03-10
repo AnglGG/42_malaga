@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 21:48:25 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:42:06 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		init_stack_a(&a, argv);
+		init_stack_a(&a, argv, argc);
 	}
 	else
-		init_stack_a(&a, argv + 1);
+		init_stack_a(&a, argv + 1, argc);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -37,6 +37,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
-	free_argv(argv);
+	free_argv(argv, argc);
 	free_stack(&a);
 }

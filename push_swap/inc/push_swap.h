@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:19:30 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 21:43:36 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:51:13 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct s_stack
 	struct s_stack		*prev;
 }	t_stack;
 
-int				error_syntax(char *str_n);
+int				error_syntax(char *argv);
 int				error_duplicate(t_stack *a, int n);
 int				stack_len(t_stack *stack);
+int				ft_atoi_2(const char *str, t_stack **a);
 
 bool			stack_sorted(t_stack *stack);
 
@@ -43,7 +44,7 @@ t_stack			*find_last(t_stack *stack);
 t_stack			*find_min(t_stack *stack);
 t_stack			*find_max(t_stack *stack);
 
-void			init_stack_a(t_stack **a, char **argv);
+void			init_stack_a(t_stack **a, char **argv, int argc);
 void			free_stack(t_stack **stack);
 void			ft_errors(t_stack **a);
 void			init_nodes_a(t_stack *a, t_stack *b);
@@ -64,6 +65,7 @@ void			pa(t_stack **a, t_stack **b, bool print);
 void			pb(t_stack **b, t_stack **a, bool print);
 void			sort_three(t_stack **a);
 void			sort_stacks(t_stack **a, t_stack **b);
-void			free_argv(char **argv);
+void			free_argv(char **argv, int argc);
+void			append_node(t_stack **stack, int n);
 
 #endif

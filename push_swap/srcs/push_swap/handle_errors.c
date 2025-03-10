@@ -6,26 +6,27 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 02:15:21 by anggalle          #+#    #+#             */
-/*   Updated: 2024/10/04 21:42:58 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:36:52 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	error_syntax(char *str_n)
+int	error_syntax(char *argv)
 {
-	if (!(*str_n == '+'
-			|| *str_n == '-'
-			|| (ft_isdigit(*str_n))))
+	int	i;
+
+	i = 0;
+	if (!(argv[i] == '+' || argv[i] == '-' || ft_isdigit(argv[i])))
 		return (1);
-	if ((*str_n == '+'
-			|| *str_n == '-')
-		&& !(ft_isdigit(str_n[1])))
+	if ((argv[i] == '+' || argv[i] == '-') && !ft_isdigit(argv[1]))
 		return (1);
-	while (*++str_n)
+	i = 1;
+	while (argv[i] != '\0')
 	{
-		if (!(ft_isdigit(*str_n)))
+		if (!ft_isdigit(argv[i]))
 			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -43,17 +44,28 @@ int	error_duplicate(t_stack *a, int n)
 	return (0);
 }
 
-void	free_argv(char **argv)
+void	free_argv(char **argv, int argc)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i])
+	if (argc == 2)
 	{
-		free(argv[i]);
-		i ++;
+		while (argv[i])
+		{
+			if (argv[i])
+			{
+				free(argv[i]);
+				argv[i] = NULL;
+			}
+			i ++;
+		}
+		if (argv)
+		{
+			free(argv);
+			argv = NULL;
+		}
 	}
-	free(argv);
 }
 
 void	free_stack(t_stack **stack)
@@ -68,7 +80,10 @@ void	free_stack(t_stack **stack)
 	{
 		tmp = current->next;
 		current->value = 0;
-		free(current);
+		if (current)
+		{
+			free(current);
+		}
 		current = tmp;
 	}
 	*stack = NULL;

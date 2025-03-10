@@ -1,8 +1,8 @@
 LIB = ar rcs
 RM = rm -f
 
-CC = clang
-CFLAGS = -Wall -Werror -Wextra
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g
 
 USER		= anggalle
 SRC_DIR		= ./srcs/
