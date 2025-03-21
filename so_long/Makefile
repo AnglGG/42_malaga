@@ -1,6 +1,6 @@
 # Comandos
 RM = rm -f
-CC = gcc
+CC = cc
 
 # Archivos y directorios
 NAME = so_long
@@ -19,28 +19,30 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) $(LIBFT) minilibx-linux/libmlx.a -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "$(GREEN)Compilando $(NAME)...$(RESET)"
+	@$(CC) $(OBJ) $(LIBFT) minilibx-linux/libmlx.a -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "$(GREEN)$(NAME) compilado!$(RESET)"
 
 $(LIBFT):
 	@echo "$(GREEN)Compilando libft...$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
 	@echo "$(GREEN)libft compilada!$(RESET)"
 
 %.o: %.c $(INCLUDE)
 	@echo "$(GREEN)Compilando $<...$(RESET)"
-	@$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) -s -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 	@echo "$(GREEN)$< compilado!$(RESET)"
 
 clean:
 	@echo "$(GREEN)Limpieza de so_long...$(RESET)"
 	@$(RM) $(OBJ)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@echo "$(GREEN)Limpieza completada.$(RESET)"
 
 fclean: clean
 	@echo "$(GREEN)Eliminando $(NAME)...$(RESET)"
 	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 	@echo "$(GREEN)$(NAME) eliminado.$(RESET)"
 
 re: fclean all

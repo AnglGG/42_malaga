@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:33 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/14 14:11:16 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:42:31 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	count_collectibles(char **map)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -49,8 +49,9 @@ int	check_exit(t_game *game, int new_x, int new_y)
 			return (0);
 		}
 	}
-	return(1);
+	return (1);
 }
+
 void	compute_new_position(int keysym, int *new_x, int *new_y)
 {
 	if (keysym == DOWN)

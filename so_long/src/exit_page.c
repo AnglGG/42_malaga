@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:36:01 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/14 14:10:01 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:20:54 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_win(t_game *game)
 	game->map.move_count++;
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	mlx_string_put(game->mlx_ptr, game->win_ptr,
-		game->map.num_columns / 2 * IMG_PXL, game->map.num_lines / 2 * IMG_PXL, 0xFFFA9E, "YOU WON");
+		game->map.num_columns / 2 * IMG_PXL, game->map.num_lines / 2 * IMG_PXL,
+		0xFFFA9E, "YOU WON");
 	write(1, "\n", 1);
 	write(1, "\x1b[32;01m", 9);
 	write(1, "🏆🏆YOU WON!!🏆🏆\n", 27);

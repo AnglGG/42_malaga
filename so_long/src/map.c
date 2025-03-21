@@ -6,13 +6,13 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:51:50 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/13 17:38:02 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:58:33 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	count_lines(const char *filename)
+int	count_lines(const char *filename, t_game *game)
 {
 	int		fd;
 	int		count;
@@ -21,7 +21,7 @@ int	count_lines(const char *filename)
 	fd = open(filename, O_RDONLY);
 	count = 0;
 	if (fd < 0)
-		error_and_exit("No se pudo abrir el archivo para contar líneas.");
+		error_and_exit("No se pudo abrir el archivo para contar líneas.", game);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -35,11 +35,12 @@ int	count_lines(const char *filename)
 
 void	count_cols(t_map *map)
 {
-	while (map->copy[0][map->num_columns] && map->copy[0][map->num_columns] != '\n')
+	while (map->copy[0][map->num_columns] &&
+		map->copy[0][map->num_columns] != '\n')
 		map->num_columns++;
 }
 
-char	**read_map(char *filename, int *num_lines)
+char	**read_map(char *filename, int *num_lines, t_game *game)
 {
 	int		total_lines;
 	char	**map;
@@ -47,14 +48,14 @@ char	**read_map(char *filename, int *num_lines)
 	int		i;
 	char	*line;
 
-	total_lines = count_lines(filename);
+	total_lines = count_lines(filename, game);
 	*num_lines = total_lines;
 	map = malloc((total_lines + 1) * sizeof(char *));
 	if (!map)
-		error_and_exit("Error de asignación de memoria para el mapa.");
+		error_and_exit("Error de asignación de memoria para el mapa.", game);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		error_and_exit("No se pudo abrir el archivo del mapa.");
+		error_and_exit("No se pudo abrir el archivo del mapa.", game);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -84,7 +85,7 @@ void	player_position(t_map *map)
 			{
 				map->player_y = i;
 				map->player_x = j;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -92,7 +93,7 @@ void	player_position(t_map *map)
 	}
 }
 
-void	inicialize_map(t_map *map, char *filename)
+void	inicialize_map(t_map *map, char *filename, t_game *game)
 {
 	map->move_count = 0;
 	map->num_columns = 0;
@@ -104,5 +105,5 @@ void	inicialize_map(t_map *map, char *filename)
 	map->p = 0;
 	map->f = 0;
 	map->w = 0;
-	map->copy = read_map(filename, &map->num_lines);
+	map->copy = read_map(filename, &map->num_lines, game);
 }
