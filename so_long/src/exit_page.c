@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:36:01 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/20 12:20:54 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:04:01 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	handle_exit(int keysym, t_game *game)
 		free(game->mlx_ptr);
 		exit(0);
 	}
+	return (0);
 }
 
 int	close_window(t_game *game)

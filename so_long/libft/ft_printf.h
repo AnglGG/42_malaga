@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:16:03 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/09 17:16:05 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:07:23 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		ft_printf(char const *format, ...);
 int		check_arg(char type_arg, va_list args, t_flags flags);
 int		ft_left_justification(const char **format, va_list args, t_flags flags);
 int		ft_isdigit(int c);
-int		ft_right_justification(const char **format, va_list args, t_flags flags);
+int		ft_right_justification(const char **format, va_list args,
+			t_flags flags);
 
 #endif

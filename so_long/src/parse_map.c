@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:54:11 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 01:26:43 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:47:57 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ void	check_boundaries(t_map *map, t_game *game)
 void	validate_characters(t_map *map, t_game *game)
 {
 	if (map->p != 1)
-		error_and_exit("El mapa debe contener exactamente 1 posición inicial.",
+		error_and_exit("El mapa debe contener 1 posición inicial.",
 			game);
-	if (map->e < 1)
-		error_and_exit("El mapa debe contener al menos 1 salida (E).", game);
+	if (map->e != 1)
+		error_and_exit("El mapa debe contener 1 salida (E).", game);
 	if (map->c < 1)
 		error_and_exit("El mapa debe contener al menos 1 coleccionable (C).",
 			game);
 }
 
-void	validate_map(t_map *map, t_game *game)
+void	validate_map(t_map *map, t_game *game, char *filename)
 {
 	check_rectangular(map->copy, game);
 	check_characters(map, game);
@@ -103,4 +103,5 @@ void	validate_map(t_map *map, t_game *game)
 	count_cols(map);
 	check_boundaries(map, game);
 	player_position(map);
+	check_path_validity(map, game, filename);
 }

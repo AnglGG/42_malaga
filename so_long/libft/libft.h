@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:15:31 by anggalle          #+#    #+#             */
-/*   Updated: 2025/02/09 17:36:07 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:07:14 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 /* Estructura de la lista enlazada */
 typedef struct s_list
@@ -58,7 +60,6 @@ char	*ft_strdup(const char *s1);
 
 /* ------------------ Parte 2 - Funciones adicionales ------------------ */
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-// char	*ft_strjoin(char const *s1, char const *s2);  // Descomenta si la implementas
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
@@ -79,8 +80,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
-# include "ft_printf.h"
-# include "get_next_line.h"
 
 #endif

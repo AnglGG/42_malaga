@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:58:45 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/20 23:53:04 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:28:01 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	inicialize_map(&game.map, argv[1], &game);
-	validate_map(&game.map, &game);
+	validate_map(&game.map, &game, argv[1]);
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
 		error_and_exit("Error al inicializar MLX.", &game);
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 			game.map.num_lines * IMG_PXL, "so_long");
 	if (!game.win_ptr)
 		error_and_exit("Error al crear la ventana.", &game);
-	render_map(&game, &game.map, &game.imgs);
+	render_map(&game, &game.map);
 	mlx_key_hook(game.win_ptr, handle_key, &game);
 	mlx_hook(game.win_ptr, 17, 0, close_window, &game);
 	mlx_loop(game.mlx_ptr);

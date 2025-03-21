@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:33 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 11:42:31 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:59:42 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,48 @@ int	check_exit(t_game *game, int new_x, int new_y)
 	return (1);
 }
 
-void	compute_new_position(int keysym, int *new_x, int *new_y)
+int	compute_new_position(int keysym, int *new_x, int *new_y)
 {
+	int	correct_key;
+
+	correct_key = 1;
 	if (keysym == DOWN)
+	{
 		(*new_y)++;
+	}
 	else if (keysym == UP)
+	{
 		(*new_y)--;
+	}
 	else if (keysym == LEFT)
+	{
 		(*new_x)--;
+	}
 	else if (keysym == RIGHT)
+	{
 		(*new_x)++;
+	}
+	else
+	{
+		correct_key = 0;
+	}
+	return (correct_key);
 }
 
 void	update_player_position(t_game *game, int new_x, int new_y)
 {
-	game->map.move_count++;
-	ft_printf("Movimientos: %d\n", game->map.move_count);
 	game->map.copy[game->map.player_y][game->map.player_x] = '0';
 	game->map.copy[new_y][new_x] = 'P';
 	game->map.player_y = new_y;
 	game->map.player_x = new_x;
-	render_map(game, &game->map, &game->imgs);
+	render_map(game, &game->map);
 }
 
 int	handle_key(int keysym, t_game *game)
 {
 	int	new_x;
 	int	new_y;
+	int	correct_key;
 
 	new_x = game->map.player_x;
 	new_y = game->map.player_y;
@@ -90,10 +105,14 @@ int	handle_key(int keysym, t_game *game)
 		free(game->mlx_ptr);
 		exit(0);
 	}
-	compute_new_position(keysym, &new_x, &new_y);
+	correct_key = compute_new_position(keysym, &new_x, &new_y);
 	if (!check_exit(game, new_x, new_y))
 		return (0);
 	if (game->map.copy[new_y][new_x] != '1')
+	{
+		if (correct_key)
+			ft_printf("Movimientos: %d\n", game->map.move_count++);
 		update_player_position(game, new_x, new_y);
+	}
 	return (0);
 }

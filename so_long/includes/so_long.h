@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:00:38 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/20 22:05:29 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:06:16 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,17 @@ void	player_position(t_map *map);
 /* parse_map.c			*/
 /* ==================== */
 
-void	validate_map(t_map *map, t_game *game);
+void	validate_map(t_map *map, t_game *game, char *filename);
 void	validate_characters(t_map *map, t_game *game);
 void	check_boundaries(t_map *map, t_game *game);
 void	check_characters(t_map *map, t_game *game);
 void	check_rectangular(char **map, t_game *game);
+
+/* ==================== */
+/* parse_map_2.c		*/
+/* ==================== */
+void	floodfill(t_map *map, int *found_exit, int *collected, t_game *game);
+void	check_path_validity(t_map *map, t_game *game, char *filename);
 
 /* ==================== */
 /* render.c				*/
@@ -98,19 +104,18 @@ void	check_rectangular(char **map, t_game *game);
 
 void	load_images(void *mlx_ptr, t_images *imgs, t_game *game);
 void	print_map_type(t_game *game, t_images *imgs, int x, int y);
-void	render_map(t_game *game, t_map *map, t_images *imgs);
-
+void	render_map(t_game *game, t_map *map);
 
 /* ==================== */
 /* free.c				*/
 /* ==================== */
+void	free_matrix(char **array);
 void	free_game(t_game *game);
 
 /* ==================== */
 /* events.c				*/
 /* ==================== */
-int	handle_key(int keysym, t_game *game);
-
+int		handle_key(int keysym, t_game *game);
 
 /* ==================== */
 /* exit_page.c			*/

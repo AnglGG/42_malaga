@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:51:50 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/20 21:58:33 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:00:39 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void	player_position(t_map *map)
 
 void	inicialize_map(t_map *map, char *filename, t_game *game)
 {
-	map->move_count = 0;
+	ft_memset(game, 0, sizeof(t_game));
+	map->move_count = 1;
 	map->num_columns = 0;
 	map->num_lines = 0;
 	map->player_x = 0;

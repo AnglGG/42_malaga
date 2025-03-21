@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:54:29 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 01:26:56 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:35:23 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	print_map_type(t_game *game, t_images *imgs, int x, int y)
 			imgs->collectible, x, y);
 }
 
-void	render_map(t_game *game, t_map *map, t_images *imgs)
+void	render_map(t_game *game, t_map *map)
 {
 	int	row;
 	int	col;
