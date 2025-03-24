@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:54:29 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 12:35:23 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:51:36 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,23 @@ void	load_images(void *mlx_ptr, t_images *imgs, t_game *game)
 	imgs->wall = mlx_xpm_file_to_image(mlx_ptr, "images/water.xpm",
 			&img_pxl, &img_pxl);
 	if (!imgs->wall)
-		error_and_exit("Error al cargar la imagen de pared (wall.xpm).", game);
+		error_and_exit("while loading the wall image (wall.xpm).", game);
 	imgs->floor = mlx_xpm_file_to_image(mlx_ptr, "images/grass.xpm",
 			&img_pxl, &img_pxl);
 	if (!imgs->floor)
-		error_and_exit("Error al cargar la imagen del piso (floor.xpm).", game);
+		error_and_exit("while loading the floor image (floor.xpm).", game);
 	imgs->player = mlx_xpm_file_to_image(mlx_ptr, "images/cat.xpm",
 			&img_pxl, &img_pxl);
 	if (!imgs->player)
-		error_and_exit("Error al cargar la imagen del jugador (cat.xpm).",
-			game);
+		error_and_exit("while loading the player image (cat.xpm).", game);
 	imgs->exit = mlx_xpm_file_to_image(mlx_ptr, "images/exit.xpm",
 			&img_pxl, &img_pxl);
 	if (!imgs->exit)
-		error_and_exit("Error al cargar la imagen de salida (exit.xpm).", game);
+		error_and_exit("while loading the exit image (exit.xpm).", game);
 	imgs->collectible = mlx_xpm_file_to_image(mlx_ptr, "images/star.xpm",
 			&img_pxl, &img_pxl);
 	if (!imgs->collectible)
-		error_and_exit("Error al cargar la imagen de coleccionable.", game);
+		error_and_exit("while loading the collectible image.", game);
 }
 
 void	print_map_type(t_game *game, t_images *imgs, int x, int y)

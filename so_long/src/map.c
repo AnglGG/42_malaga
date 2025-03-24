@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:51:50 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 14:00:39 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:59:51 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_lines(const char *filename, t_game *game)
 	fd = open(filename, O_RDONLY);
 	count = 0;
 	if (fd < 0)
-		error_and_exit("No se pudo abrir el archivo para contar líneas.", game);
+		error_and_exit("can't open the file to count lines.", game);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -52,10 +52,10 @@ char	**read_map(char *filename, int *num_lines, t_game *game)
 	*num_lines = total_lines;
 	map = malloc((total_lines + 1) * sizeof(char *));
 	if (!map)
-		error_and_exit("Error de asignación de memoria para el mapa.", game);
+		error_and_exit("memory allocation error for the map", game);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		error_and_exit("No se pudo abrir el archivo del mapa.", game);
+		error_and_exit("can't open map file", game);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)

@@ -1,9 +1,9 @@
-# Comandos
+# Commands
 RM = rm -f
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-# Archivos y directorios
+# Files and directories
 NAME = so_long
 SRC = src/main.c src/render.c src/map.c src/events.c src/errors.c src/exit_page.c src/free.c src/parse_map.c src/parse_map_2.c
 OBJ = $(SRC:.c=.o)
@@ -13,46 +13,46 @@ MLX_DIR = ./minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 INCLUDE = $(MLX_DIR)/mlx.h/mlx_init.h includes/so_long.h
 
-# Colores
+# Colors
 GREEN = \033[1;32m
 RESET = \033[0m
 
-# Reglas
+# Rules
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
-	@echo "$(GREEN)Compilando $(NAME)...$(RESET)"
+	@echo "$(GREEN)Compiling $(NAME)...$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
-	@echo "$(GREEN)$(NAME) compilado!$(RESET)"
+	@echo "$(GREEN)$(NAME) compiled!$(RESET)"
 
 $(LIBFT):
-	@echo "$(GREEN)Compilando libft...$(RESET)"
+	@echo "$(GREEN)Compiling libft...$(RESET)"
 	@$(MAKE) -s -C $(LIBFT_DIR)
-	@echo "$(GREEN)libft compilada!$(RESET)"
+	@echo "$(GREEN)libft compiled!$(RESET)"
 
 $(MLX):
-	@echo "$(GREEN)Compilando MinilibX...$(RESET)"
+	@echo "$(GREEN)Compiling MinilibX...$(RESET)"
 	@$(MAKE) -s -C $(MLX_DIR)
-	@echo "$(GREEN)MinilibX compilada!$(RESET)"
+	@echo "$(GREEN)MinilibX compiled!$(RESET)"
 
 %.o: %.c $(INCLUDE)
-	@echo "$(GREEN)Compilando $<...$(RESET)"
+	@echo "$(GREEN)Compiling $<...$(RESET)"
 	@$(CC) -s $(CFLAGS) -I/usr/include -I$(MLX_DIR) -O3 -c $< -o $@
-	@echo "$(GREEN)$< compilado!$(RESET)"
+	@echo "$(GREEN)$< compiled!$(RESET)"
 
 clean:
-	@echo "$(GREEN)Limpieza de so_long...$(RESET)"
+	@echo "$(GREEN)Cleaning so_long...$(RESET)"
 	@$(RM) $(OBJ)
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(MLX_DIR) clean
-	@echo "$(GREEN)Limpieza completada.$(RESET)"
+	@echo "$(GREEN)Cleaning completed.$(RESET)"
 
 fclean: clean
-	@echo "$(GREEN)Eliminando $(NAME)...$(RESET)"
+	@echo "$(GREEN)Removing $(NAME)...$(RESET)"
 	@$(RM) $(NAME)
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 	@$(MAKE) -s -C $(MLX_DIR) clean
-	@echo "$(GREEN)$(NAME) eliminado.$(RESET)"
+	@echo "$(GREEN)$(NAME) removed.$(RESET)"
 
 re: fclean all
 

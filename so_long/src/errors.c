@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:52:16 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 13:28:13 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:52:57 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ void	error_and_exit(const char *msg, t_game *game)
 	free_game(game);
 	if (game->mlx_ptr || game->win_ptr)
 	{
-		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-		mlx_destroy_display(game->mlx_ptr);
-		free(game->mlx_ptr);
+		if (game->mlx_ptr && game->win_ptr)
+			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		if (game->mlx_ptr)
+		{
+			mlx_destroy_display(game->mlx_ptr);
+			free(game->mlx_ptr);
+		}
 	}
 	exit(EXIT_FAILURE);
 }

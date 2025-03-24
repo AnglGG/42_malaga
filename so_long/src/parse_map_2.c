@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 12:22:56 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 13:53:29 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:59:41 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_path_validity(t_map *map, t_game *game, char *filename)
 	floodfill(map, &found_exit, &collected, game);
 	if (!found_exit || collected != map->c)
 	{
-		error_and_exit("No se puede recoger todos los collecionables.", game);
+		error_and_exit("cannot collect all the collectibles.", game);
 	}
 	free_matrix(game->map.copy);
 	game->map.copy = read_map(filename, &game->map.num_lines, game);

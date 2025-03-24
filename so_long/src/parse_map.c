@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:54:11 by anggalle          #+#    #+#             */
-/*   Updated: 2025/03/21 13:47:57 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:59:35 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_rectangular(char **map, t_game *game)
 		if (width == -1)
 			width = current_width;
 		else if (current_width != width)
-			error_and_exit("El mapa no es rectangular.", game);
+			error_and_exit("the map is not rectangular.", game);
 		i++;
 	}
 }
@@ -55,7 +55,7 @@ void	check_characters(t_map *map, t_game *game)
 			else if (map->copy[i][j] == 'P')
 				map->p++;
 			else
-				error_and_exit("Carácter inválido", game);
+				error_and_exit("invalid character", game);
 			j++;
 		}
 		i ++;
@@ -71,14 +71,14 @@ void	check_boundaries(t_map *map, t_game *game)
 	while (j < map->num_columns)
 	{
 		if (map->copy[0][j] != '1' || map->copy[map->num_lines - 1][j] != '1')
-			error_and_exit("El mapa no está cerrado.", game);
+			error_and_exit("the map is not closed", game);
 		j ++;
 	}
 	i = 0;
 	while (i < map->num_lines - 1)
 	{
 		if (map->copy[i][0] != '1' || map->copy[i][map->num_columns - 1] != '1')
-			error_and_exit("El mapa no está cerrado en los laterales.", game);
+			error_and_exit("the map is not closed in the sides.", game);
 		i ++;
 	}
 }
@@ -86,12 +86,12 @@ void	check_boundaries(t_map *map, t_game *game)
 void	validate_characters(t_map *map, t_game *game)
 {
 	if (map->p != 1)
-		error_and_exit("El mapa debe contener 1 posición inicial.",
+		error_and_exit("the map must contain 1 initial position (P).",
 			game);
 	if (map->e != 1)
-		error_and_exit("El mapa debe contener 1 salida (E).", game);
+		error_and_exit("the map must contain one exit (E).", game);
 	if (map->c < 1)
-		error_and_exit("El mapa debe contener al menos 1 coleccionable (C).",
+		error_and_exit("the mup must conatin at least one collectible (C).",
 			game);
 }
 
