@@ -6,27 +6,13 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:00:00 by anggalle          #+#    #+#             */
-/*   Updated: 2025/07/14 15:15:35 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 19:17:29 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
 int	should_philosopher_die(t_philo *philo)
-{
-	long	current_time;
-	long	time_since_meal;
-	int		is_eating;
-
-	pthread_mutex_lock(&philo->meal_mutex);
-	current_time = get_current_time();
-	time_since_meal = current_time - philo->last_meal_time;
-	is_eating = philo->eating;
-	pthread_mutex_unlock(&philo->meal_mutex);
-	return (time_since_meal > philo->table->time_to_die && !is_eating);
-}
-
-static int	should_philosopher_die_unlocked(t_philo *philo)
 {
 	long	current_time;
 	long	time_since_meal;
@@ -66,7 +52,7 @@ static int	check_deaths(t_table *table)
 	while (i < table->num_philos)
 	{
 		pthread_mutex_lock(&table->philos[i].meal_mutex);
-		if (should_philosopher_die_unlocked(&table->philos[i]))
+		if (should_philosopher_die(&table->philos[i]))
 		{
 			pthread_mutex_unlock(&table->philos[i].meal_mutex);
 			if (!is_simulation_ended(table))
