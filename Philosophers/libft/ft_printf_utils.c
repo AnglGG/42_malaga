@@ -6,11 +6,11 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:12:05 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/05 12:37:43 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:40:55 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_putstr(char *str, t_flags flags)
 {

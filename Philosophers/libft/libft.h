@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:36:24 by anggalle          #+#    #+#             */
-/*   Updated: 2025/06/26 14:15:21 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:44:17 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-//printf
+// --- ft_printf ---
 typedef struct s_flags
 {
 	int	print;
@@ -88,18 +88,16 @@ typedef struct s_flags
 	int	mas;
 }	t_flags;
 
+int		ft_printf(const char *format, ...);
+int		check_arg(char type_arg, va_list args, t_flags flags);
 int		ft_numlen(long num);
-int		ft_puthex(uintptr_t n, int is_uppercase, t_flags flags);
+int		ft_put_zeros(int num_zeros, t_flags flags);
 int		ft_putstr(char *str, t_flags flags);
 int		ft_putchar(char c, t_flags flags);
 int		ft_putnbr(long n, t_flags flags);
-int		ft_put_zeros(int num_zeros, t_flags flags);
+int		ft_puthex(uintptr_t n, int is_uppercase, t_flags flags);
 int		ft_hastack(const char **format, va_list args, t_flags flags);
-int		ft_printf(char	const	*format, ...);
-int		check_arg(char type_arg, va_list args, t_flags flags);
-int		ft_left_justification(const char **format, va_list args,
-			t_flags flags);
-int		ft_right_justification(const char **format, va_list args,
-			t_flags flags);
+int		ft_left_justification(const char **format, va_list args, t_flags flags);
+int		ft_right_justification(const char **format, va_list args, t_flags flags);
 
 #endif

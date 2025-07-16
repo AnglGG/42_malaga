@@ -6,11 +6,11 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 17:45:14 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/06 18:28:11 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:41:43 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_hastack(const char **format, va_list args, t_flags flags)
 {

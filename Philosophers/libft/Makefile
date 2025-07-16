@@ -21,6 +21,11 @@ BONUS			=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlas
 
 BONUS_OBJS		= $(BONUS:.c=.o)
 
+PRINTF_SRC		= 	ft_printf.c ft_printf_utils.c ft_printf_hexadecimals.c \
+					ft_printf_bonus.c ft_printf_bonus_2.c ft_numlen.c ft_putnbr.c
+
+PRINTF_OBJS		= $(PRINTF_SRC:.c=.o)
+
 # Colores
 GREEN = \033[1;32m
 RESET = \033[0m
@@ -32,9 +37,9 @@ $(NAME): $(OBJ)
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "$(GREEN)Library created: $(NAME)$(RESET)"
 
-bonus: $(OBJ) $(BONUS_OBJS)
+bonus: $(OBJ) $(BONUS_OBJS) $(PRINTF_OBJS)
 	@echo "$(GREEN)Creating bonus...$(RESET)"
-	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS)
+	@$(LIB) $(NAME) $(OBJ) $(BONUS_OBJS) $(PRINTF_OBJS)
 	@echo "$(GREEN)Bonus created!$(RESET)"
 
 %.o: %.c $(INCLUDE)
@@ -44,7 +49,7 @@ bonus: $(OBJ) $(BONUS_OBJS)
 
 clean:
 	@echo "$(GREEN)Cleaning...$(RESET)"
-	@$(RM) $(OBJ) $(BONUS_OBJS)
+	@$(RM) $(OBJ) $(BONUS_OBJS) $(PRINTF_OBJS)
 	@echo "$(GREEN)Clean complete.$(RESET)"
 
 fclean: clean

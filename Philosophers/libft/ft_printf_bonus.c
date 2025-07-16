@@ -6,11 +6,11 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:32:27 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/09 12:09:38 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:41:35 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	is_zero(const char *str)
 {

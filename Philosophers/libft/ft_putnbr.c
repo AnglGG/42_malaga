@@ -6,11 +6,11 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:08:26 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/06 18:27:48 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:43:15 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_put_zeros(int num_zeros, t_flags flags)
 {

@@ -6,11 +6,11 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:57:41 by anggalle          #+#    #+#             */
-/*   Updated: 2024/07/06 17:54:47 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:41:03 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 char	get_hex_digit(uintptr_t digit, int is_uppercase)
 {
