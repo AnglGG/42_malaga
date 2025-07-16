@@ -24,7 +24,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "$(GREEN)Creating executable...$(RESET)"
-	@make -C $(LIBFTDIR)
+	@make bonus -C $(LIBFTDIR)
 	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJ) -L$(LIBFTDIR) -lft
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
