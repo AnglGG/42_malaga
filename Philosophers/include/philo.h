@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 20:36:28 by anggalle          #+#    #+#             */
-/*   Updated: 2025/07/14 15:53:11 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:44:46 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	validate_argument(char *arg, int min_value, char *param_name);
 /* Initialization functions */
 int		init_table(t_table *table);
 void	cleanup_table(t_table *table);
-int		init_mutex_trio(t_table *table);
 
 /* Print functions */
 void	print_action(t_philo *philo, const char *action);

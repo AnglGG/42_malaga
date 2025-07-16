@@ -1,17 +1,16 @@
-LIB = ar rcs
+NAME = philo
 RM = rm -f
 
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror -pthread
 
-NAME = philo
 SRCDIR = src
 INCDIR = include
 LIBFTDIR = libft
 
 SRC =	main.c parsing.c error.c utils.c init.c cleanup.c \
 		print.c simulation.c philosopher.c monitor.c \
-		utils_time.c philosopher_utils.c init_utils.c simulation_utils.c
+		utils_time.c philosopher_utils.c simulation_utils.c
 
 SRCFILES = $(addprefix $(SRCDIR)/, $(SRC))
 OBJ = $(SRCFILES:.c=.o)

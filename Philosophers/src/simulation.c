@@ -6,7 +6,7 @@
 /*   By: anggalle <anggalle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:00:00 by anggalle          #+#    #+#             */
-/*   Updated: 2025/07/14 15:53:22 by anggalle         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:07:44 by anggalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	handle_single_philosopher(t_table *table)
 {
-	long	start_time;
-
-	start_time = get_current_time();
-	table->philos[0].last_meal_time = start_time;
+	table->start_time = get_current_time();
+	table->philos[0].last_meal_time = table->start_time;
 	print_action(&table->philos[0], "has taken a fork");
-	while (get_current_time() - start_time < table->time_to_die)
+	while (get_current_time() - table->start_time < table->time_to_die)
 	{
 		usleep(1000);
 		if (is_simulation_ended(table))
@@ -62,8 +60,6 @@ int	start_simulation(t_table *table)
 		return (0);
 	if (table->num_philos == 1)
 	{
-		table->start_time = get_current_time();
-		table->philos[0].last_meal_time = table->start_time;
 		handle_single_philosopher(table);
 		return (0);
 	}
